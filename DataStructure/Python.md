@@ -214,6 +214,14 @@ print(link_list.travel())
 
 7. 链表的反转
 
+假如现在有个链表，如下：
+
+```
+1 -> 2 -> 3 -> None
+```
+思路：先创建一个None, 然后循环遍历每个节点，从1开始，next是None，然后2的next是
+1和None这个链表，其余的如法炮制.
+
 ```
 def reverse(self):
     cur = self.head
@@ -222,6 +230,20 @@ def reverse(self):
         # cur, pre, cur.next= cur.next, cur, pre
         cur.next, pre, cur = pre, cur, cur.next
     self.head = pre
+```
+
+另一种比较好理解的写法：
+
+```
+    def reverse(self):
+        cur = self.head
+        pre = None
+        while cur is not None:
+            temp = cur
+            cur = cur.next
+            temp.next = pre
+            pre = temp
+        self.head = pre
 ```
 
 8. 查找节点

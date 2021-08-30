@@ -285,3 +285,136 @@ def search(self, item):
     return False
 ```
 
+# 树
+
+参考视频：https://www.bilibili.com/video/BV1NZ4y1M7wo
+
+## 树的基本概念
+
+树是由一个根节点和多个子节点组成， 每个子节点只能有一个父节点，常用术语如下：
+
+- 节点的度：一个节点含有的子数的个数，叫做该节点的度
+- 树的度：一棵树中，最大的节点的度称做树的度
+- 叶子节点：度为0的节点
+- 父节点：如果一个节点含有子节点，那么这个节点叫子节点的父节点
+- 子节点
+- 兄弟节点
+- 节点的层次：从根节点开始，根为第一层，根的子节点为第二层
+- 树的高度或者深度，也就是最大的层数
+- 堂兄弟节点：父节点再同一层的节点互为堂兄弟
+- 节点的祖先：从根到该节点，经过的所有节点，都是该节点的祖先
+
+树的种类有：
+
+- 无序树：树中任意节点的子节点之间没有顺序关系
+- 有序树：树中的任意节点的子节点之间有顺序关系，这种称为有序树(从左到右读取数
+  据，子节点，父节点，子节点的顺序)
+  - 二叉树：每个节点最多含有两个子树的树称为二叉树，注意是最多含有两个子树
+  - 完全二叉树：除了最底层，其他层的度都应该是2
+  - 满二叉树：全部层，包括底层的节点的度，都应该是2
+  - 平衡二叉树：每个节点的子树的层，最大不能超过1
+  - 排序二叉树：凡是在根左边的树，都比根节点小。就像二分法一样
+
+还有其他类型的树，如霍夫曼树，B树等.
+
+树的代码实现：使用链表的方式实现
+
+## 二叉树的实现
+
+1. 广度优先遍历(按层次，从左到右依次读取数据)
+
+首先是添加元素到树中，思想就是一层一层从左到右遍历，先判断当前节点的左节点有没
+有值，有值就添加到队列中，没有就将节点链接到当前位置, 不断寻找，找到就退出
+
+```
+class Node: # 二叉树的节点
+    def __init__(self, ele):
+        self.ele = ele
+        self.lchild = None
+        self.rchild = None
+
+class Tree:
+    def __init__(self):
+        self.root = None
+
+    def add(self, item):
+        node = Node(item)
+        # 首先直接判断根节点有没有元素, 没有就直接添加进去
+        if self.root is None:
+            self.root = node
+            return
+
+        # 如果有，就一直寻找，先把不是空的节点添加到队列中
+        # 找到了就退出循环
+        queue = [self.root] # 存放待寻找的对象
+        while queue:
+            cur_node = queue.pop(0)
+            if cur_node.lchild is None:
+                cur_node.lchild = node
+                return # 直接return 是因为add方法直接添加进去就好了
+            queue.append(cur_node.lchild)
+            if cur_node.rchild is None:
+                cur_node.rchild = node
+                return
+            queue.append(cur_node.rchild)
+
+
+    def breadth_travel(self): # 广度遍历
+        res = []
+        queue = [self.root]
+        if self.root is None:
+            return
+        while queue:
+            cur_node = queue.pop(0)
+            res.append(cur_node.ele)
+            if cur_node.lchild is not None:
+                queue.append(cur_node.lchild)
+            if cur_node.rchild is not None:
+                queue.append(cur_node.rchild)
+        print(res)
+
+
+t = Tree()
+t.breadth_travel()
+t.add(1)
+t.add(2)
+t.add(3)
+t.breadth_travel()
+```
+(假设现在有1 2 3 4 5 6, 可以先在图纸上画出这棵树)
+
+广度遍历：什么是树的广度遍历？ 我们知道树是一层一层组成的，如果我们使用从左往右，按一层一层打印出东西来，那么这就是广度遍历
+
+1, 2 , 3, 4, 5, 6
+
+深度遍历：
+
+- 先序遍历
+- 中序遍历
+- 后序遍历
+
+1. 先序遍历
+
+> 根，左，右
+
+
+画出树，按根左右顺序来看，首先整体是一颗树，根是1， 所以先输出1, 处理完根后，处理左边， 然后左边是2为根的子树，再输出2，然后输出左边4，右边5，回过头发现以1为根的树处理完，只要处理右边即可，如法炮制，可以打印出3，6，7那么先序遍历打印出来的结果就是
+
+1, 2, 4, 5, 3, 6
+
+2. 中序遍历
+
+> 左，根，右
+
+树同上面一样，按左根右的顺序打印，1为根，左边是2为根的子树，左节点是4，所以先
+打印4，然后是2，最后是5，到此左树处理完了，然后打印1为根的，最后处理右边，那么以根节点在中间，所以打印顺序如下：
+
+4, 2, 5, 1, 6, 3
+
+3. 后序遍历
+
+同上，按左右根的顺序打印，处理到4，然后输出5， 最后输出2， 然后处理右树， 6， 7， 3， 1根节点最后打印
+
+4, 5, 2, 6, 3, 1
+
+总结：所以看根打印的顺序分为先中后这三个顺序

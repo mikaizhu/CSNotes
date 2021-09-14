@@ -6,7 +6,7 @@
    * [数据结构与算法](#数据结构与算法)
 * [数据结构与算法](#数据结构与算法-1)
 
-<!-- Added by: zwl, at: 2021年 8月30日 星期一 20时04分33秒 CST -->
+<!-- Added by: zwl, at: 2021年 9月14日 星期二 21时14分24秒 CST -->
 
 <!--te-->
 
@@ -24,5 +24,5 @@
 [【↥ back to top】](#目录)
 # 数据结构与算法
 
-- [Python版本](./DataStructure/Python.md) 
 - [Cpp版本](./DataStructure/Cpp.md) 
+- [Python版本](./DataStructure/Python.md) 

@@ -1,23 +1,17 @@
 #include <iostream>
 #include <unordered_map>
+#include <string>
+#include <vector>
 
 using namespace std;
 
-void print(unordered_map<int, int> &m)
-{
-    for (unordered_map<int, int>::iterator it=m.begin(); it != m.end(); it++)
-    {
-        cout << "key: " << it->first << " " << "value: " << it->second << endl;
-    }
-}
-
 int main()
 {
-    unordered_map<int, int> m = {
-        {1, 2},
-        {2, 3},
-        {3, 4},
-    };
-
-    print(m);
+    string s;
+    s = "hello world";
+    s[0] = 'H';
+    cout << s << endl;
+    for (string::iterator it=s.begin() + 1; it != s.end(); it++)
+        cout << *it << endl;
 }
+

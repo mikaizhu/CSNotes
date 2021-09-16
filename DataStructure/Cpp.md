@@ -158,4 +158,61 @@ public:
 };
 ```
 
+## 605. 种花问题
 
+思路：因为花不能有间隔，所以从0开始跳跃即可，如果当前位置为0，且下一个位置不是
+1，则可以种花。如果下一个位置是1，则i加1，然后又从1位置开始跳跃，因为1位置后面
+一定是0，所以可以不用全部遍历
+
+```
+class Solution {
+public:
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+        for (int i = 0; i < flowerbed.size(); i+=2)
+        {
+            if (flowerbed[i] == 0)
+            {
+                if (i+1 == flowerbed.size() || flowerbed[i+1] == 0)
+                    n--;
+                else
+                    i++;
+            }
+        }
+        return n <= 0;
+    }
+};
+```
+
+## 452. 用最少数量的箭引爆气球
+
+思路：这个和435题差不多，435是无重叠区域，这个题是相当于找最大重合的，因为数组
+是二维的，所以可以先排序，从数组的第一个元素开始排。设置start和end，start为重
+叠的最大，end为重叠最小部分，每次遍历看有没有在这个区间，有就更新。
+
+```
+class Solution {
+public:
+    int findMinArrowShots(vector<vector<int>>& points) {
+        //sort(points.begin(), points.end(), [](vector<int> &a, vector<int> &b){if (a[1] == b[1]) return a[0] < b[0]; else return a[1] < b[1];});
+        sort(points.begin(), points.end(), [](vector<int> &a, vector<int> &b){return a[0] < b[0];});
+        //print(points);
+        int arrow_count = 1;
+        int start = points[0][0], end = points[0][1];
+        for (int i = 1; i < points.size(); i++)
+        {
+            if (start <= points[i][0] && points[i][0] <= end)
+            {
+                points[i][0] > start ? start = points[i][0] : start = start;
+                points[i][1] < end ? end = points[i][1] : end = end;
+            }
+            else
+            {
+                arrow_count++;
+                start = points[i][0];
+                end = points[i][1];
+            }
+        }
+        return arrow_count;
+    }
+};
+```

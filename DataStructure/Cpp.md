@@ -1,10 +1,15 @@
 # Cpp Version
 
-## 参考教程
+# 参考教程
 
 - 1. [github解法](https://github.com/pezy/LeetCode) 
 - 2. [gihub](https://github.com/liuyubobobo/Play-Leetcode)
 - 3. [用法说明，查看](https://en.cppreference.com/w/) 
+
+# 贪心算法
+
+贪心算法思想：问题整体可以分成很多独立的个体，使得每个个体达到最优解，最后整体
+可以达到最优解.
 
 ## twoSum
 
@@ -216,3 +221,199 @@ public:
     }
 };
 ```
+# 双指针
+
+
+## 142. 环形链表 II
+
+两个方法：
+
+1. 方法1: 使用set存储链表的节点，如果遇到了重复的节点，那么就返回该节点，否则
+   返回NULL
+
+```
+unordered_set<ListNode *> visited;
+```
+
+
+2. 使用快慢指针，由于fast指针速度是slow指针速度的两倍，所以两者的路程差距一定
+   是nb，b为环的长度。可以设置slow走的路程刚好是nb，fast的路程则为2nb，由于不
+   知道相遇点在哪，所以还要走a步即可。参考: https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/
+
+
+## 76. 最小覆盖子串(TODO)
+
+
+```
+
+```
+
+<++>
+
+## 633. 平方数之和
+
+要注意这里要用long类型的数据，为了避免溢出，long的长度为32，right为31，2*31还
+是小于32长度，所以保证不会溢出.
+
+```
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        long left = 0, right = (int)sqrt(c);
+        long sum;
+        while (left < right)
+        {
+            sum = left * left + right * right;
+            if (sum < c)
+                ++left;
+            else if (sum > c)
+                --right;
+            else
+                return true;
+        }
+        return false;
+    }
+};
+```
+
+## 680. 验证回文字符串 Ⅱ
+
+写个额外的验证代码即可，判断子串是不是也是回文字符串
+
+# 二分查找
+
+二分查找的序列，一定要事先排序好.
+
+当我们将区间[l, r]划分成[l, mid]和[mid + 1, r]时，其更新操作是r = mid或者l = mid + 1，计算mid时不需要加1，即mid = (l + r)/2。
+
+参考：https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/solution/tu-jie-er-fen-zui-qing-xi-yi-dong-de-jia-ddvc/
+
+## 69. x 的平方根
+
+就是每次搜索区间折半
+
+如果mid * mid 会溢出，那么将数据设置成 (long long)mid * mid
+
+- [参考代码](./code/cpp/mySqrt.cpp) 
+
+
+## 34. 在排序数组中查找元素的第一个和最后一个位置
+
+一般写法
+
+```
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> res;
+        int i = 0;
+        for (; i < nums.size() && nums[i] <= target; i++)
+        {
+            if (res.empty() && nums[i] == target)
+                res.push_back(i);
+        }
+        if (res.empty())
+            return {-1, -1};
+        res.push_back(i-1);
+        return res;
+    }
+};
+```
+
+二分搜索:
+
+二分搜索找两个位置，实现两次二分查找:
+- 第一个位置为第一个找到目标的位置, 如果mid位置的数大于等于target，则往左边找
+  ，这样就能找到第一个位置(等价于先找到mid等于target的位置，然后往左边找左区间)
+- 第二个位置为刚好大于目标的位置, 如果mid位置的数大于等于target，则往右边位置
+  找，这样能找到右边界
+
+如果目标不在数组中，那么会怎么样？
+
+- 如果不在数组中，left会大于right
+
+- [参考代码](./code/cpp/searchRange.cpp) 
+
+## 33. 搜索旋转排序数组(TODO)
+
+
+# cpp中的字符串
+
+```
+
+```
+
+<++>
+
+# c++中的链表
+
+参考教程：https://blog.csdn.net/ccblogger/article/details/81176338
+
+整个链表有两个结构，一是节点类，二是链表类, 首先构造节点类
+
+```
+struct Node
+{
+  public:
+    double value; // 存储数据
+    Node *next; // 指向下一个node
+
+  public: // 构造函数初始化参数，以及构造函数的重载
+    Node() : value(0), next(nullptr) {};
+    Node(int val) : value(val), next(nullptr) {};
+    Node(int val, Node *next) : value(0), next(next) {};
+};
+```
+
+节点类包括以下内容：
+
+- 存储当前数据
+- 存储下一个数据地址
+
+上面代码实现了三种构造函数的代码
+
+然后是链表类代码的实现：
+
+```
+struct List
+{
+  public:
+    List(int val) : head(new Node(val)) {};
+    List(Node *node) : head(node) {};
+    ~List()
+    {
+        if (head != nullptr)
+            delete head;
+        head = nullptr;
+    }
+  public:
+    Node *head;
+};
+```
+
+该类中包括
+- 头指针，指向第一节点的地址
+- 两个构造函数，所以可以使用两种方法创建链表
+
+方法1:
+```
+Node *node = new Node(4);
+List list(node);
+```
+
+方法2:
+
+```
+List list(4);
+```
+
+因为list实现了下面方法：
+
+```
+List(int val) : head(new Node(val)) {}; // 初始化了一个链表
+```
+
+一定要使用new创建节点，因为如果不用new，函数在创建完就会释放，new的空间不会释
+放
+
+- [参考代码](./code/cpp/listNode.cpp) 

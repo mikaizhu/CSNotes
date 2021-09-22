@@ -417,3 +417,148 @@ List(int val) : head(new Node(val)) {}; // 初始化了一个链表
 放
 
 - [参考代码](./code/cpp/listNode.cpp) 
+
+## 203. 移除链表元素
+
+题目链接：https://leetcode-cn.com/problems/remove-linked-list-elements/
+
+思路链接：https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0203.%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0.md
+
+代码讲解：
+
+```
+// 思路1：设置虚拟头节点
+ListNode* dummy = new ListNode(0, head); // 一定要使用new创建一个新节点
+ListNode* cur = dummy; // 设置个cur指针类型，用来专门移动, 因为如果dummy移动了
+，就找不回链表了
+
+```
+
+## 707. 设计链表
+
+```
+// 首先定义Link类
+class MyLinkedList {};
+
+// 然后在类中实现Node节点数据结构
+public:
+    struct LinkedNode {
+        int val;
+        LinkedNode* next;
+        LinkedNode(int val) : val(val), next(nullptr) {}
+    };
+
+// 定义私有变量size和dummynode，方便代码维护
+private:
+    int _size;
+    LinkedNode* _dummyHead;
+
+// 结构体初始化, 不需要head来维护，只要虚拟头节点就好
+public:
+    MyLinkedList() {
+        _size = 0; // 初始化长度，方便链表的维护
+        _dummyHead = new LinkedNode(0); // 初始化虚拟头节点，同样方便维护
+    }
+```
+
+- [参考代码](./code/cpp/MyLinkedList_707.cpp) 
+
+## 24. 两两交换链表中的节点
+
+- 最好添加个虚拟头节点
+- 最好画图，然后实现
+
+```
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode* dummyHead = new ListNode(0, head);
+        ListNode* cur = dummyHead, *temp1, *temp2, *temp;
+        while (cur->next != NULL && cur->next->next != NULL)
+        {
+            temp2 = cur->next->next;
+            temp = temp2->next;
+            temp1 = cur->next;
+            cur->next = temp2;
+            cur->next->next = temp1;
+            temp1->next = temp;
+            cur = temp1;
+        }
+        return dummyHead->next;
+    }
+};
+```
+
+## 19. 删除链表的倒数第 N 个结点
+
+- 使用快慢指针，快指针比慢指针先走
+- 同时使用虚拟头节点
+
+```
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *dummyHead = new ListNode(0, head);
+        ListNode *fast = dummyHead, *slow = dummyHead;
+        while (n--)
+            fast = fast->next;
+        while (fast->next != NULL)
+        {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        slow->next = slow->next->next;
+        return dummyHead;
+    }
+};
+```
+
+# 哈希表
+
+cpp中的哈希表有好几种类型，包括：
+
+- map
+- set
+- 数组
+
+## 242. 有效的字母异位词
+
+从这道题中可以学习：
+
+```
+int l[2] = {0}; // 这样就是定义{0, 0}
+```
+
+字符相减是整数
+
+```
+'a' - 'a' // 0
+```
+
+使用三个循环，这题只用普通的数组即可，统计s字符，维护一个数组，有26个字母，出
+现则加1
+
+第二个循环对该数组减法
+
+第三个循环遍历数组，如果所有元素不为0，则返回false
+
+
+## 1002. 查找共用字符
+
+```
+string s(1, 'a');
+
+两个字符串相减或者相加，会变成整数
+
+'a' - 'a' // 0
+
+可以利用string将int/char转换成string
+string s(1, 1 + 'a');
+```
+
+- 将数组初始化为0, 按字节来初始化
+```
+memset(hashOtherStr, 0, 26 * sizeof(int));
+```
+
+

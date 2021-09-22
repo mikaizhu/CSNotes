@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <set>
 
 using namespace std;
 
@@ -19,8 +20,8 @@ void print(vector<vector<int> > &v)
 
 int main()
 {
-    string s = "hello world";
-    string *p = &s;
-    cout << *(p) << endl;
+    set<int> s;
+    s = {1, 2, 3};
+    cout << s.find(it);
 }
 

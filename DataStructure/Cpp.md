@@ -561,4 +561,49 @@ string s(1, 1 + 'a');
 memset(hashOtherStr, 0, 26 * sizeof(int));
 ```
 
+## 349. 两个数组的交集
+
+新的遍历方式
+
+```
+for (int num : nums2)
+{
+  if (temp.find(num) != nums2.end())
+    res.insert(num);
+}
+
+```
+
+vector转set
+
+```
+unordered_set<int> temp(nums1.begin(), nums1.end()); // 将vector转换成set
+```
+
+`unordered_set` 底层实现是哈希，其他set是红黑树，所以效率会更快点.
+
+
+## 1. 两数之和
+
+迭代器有两种写法：
+
+```
+1. 使用auto关键字
+auto it = hashmap.find(target - nums[i]);
+
+// 正确写法如下:
+unordered_map<int, int>::iterator it = hashmap.find(target - nums[i]);
+```
+
+哈希表赋值也有以下方法：
+
+```
+hashmap[nums[i]] = i;
+
+// 使用pair进行赋值
+hashmap.insert(pair<int, int>(nums[i], i))
+```
+
+## 454.四数相加
+
 

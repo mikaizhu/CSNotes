@@ -607,3 +607,105 @@ hashmap.insert(pair<int, int>(nums[i], i))
 ## 454.四数相加
 
 
+## 15 三数之和
+
+我的思路：要考虑初始化，代码结构复杂
+
+```
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        if (nums.size() < 3) return {}; // 如果长度小于3，则返回空矩阵
+        vector<vector<int> > res;
+        sort(nums.begin(), nums.end());
+        // 初始化，为了避免和之前元素值相同, 所以初始化为原来减1
+        int left = 0;
+        int pre_left = nums[left] - 1;
+        for (; left < nums.size() - 2; left++)
+        {
+            if (nums[left] == pre_left) // 避免重复
+                continue;
+            int mid = left + 1, right = nums.size() - 1;
+            int pre_mid = nums[mid] - 1, pre_right = nums[right] - 1;
+            while (mid < right)
+            {
+                int sum = nums[left] + nums[mid] + nums[right];
+                if (sum == 0)
+                {
+                    cout << left << " " << mid << " " << right << endl;
+                    res.push_back({nums[left], nums[mid], nums[right]});
+                    pre_mid = nums[mid];
+                    mid++;
+                    while (nums[mid] == pre_mid && mid < right)
+                        mid++;
+                    pre_right = nums[right];
+                    right--;
+                    while (nums[right] == pre_right && mid < right)
+                        right--;
+                }
+                else if (sum < 0)
+                {
+                    pre_mid = nums[mid];
+                    mid++;
+                    while (nums[mid] == pre_mid && mid < right)
+                        mid++;
+                }
+                else
+                {
+                    pre_right = nums[right];
+                    right--;
+                    while (nums[right] == pre_right && mid < right)
+                        right--;
+                }
+            }
+            pre_left = nums[left];
+        }
+        return res;
+    }
+};
+
+```
+
+```
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int> > res; // res初始化为空矩阵
+        if (nums.size() < 3) return res; // 如果长度小于3，则返回空矩阵
+        sort(nums.begin(), nums.end());
+        // 初始化，为了避免和之前元素值相同, 所以初始化为原来减1
+        for (int left = 0; left < nums.size() - 1; left++)
+        {
+            if (nums[left] > 0) return res;
+            if (left > 0 && nums[left] == nums[left - 1]) // 使用left > 0去除重复
+                continue;
+            int mid = left + 1, right = nums.size() - 1;
+            while (mid < right)
+            {
+                int sum = nums[left] + nums[mid] + nums[right];
+                if (sum > 0)
+                {
+                    right--;
+                    while (right > mid && nums[right] == nums[right + 1]) right--;
+                }
+                else if (sum < 0)
+                {
+                    mid++;
+                    while (right > mid && nums[mid] == nums[mid - 1]) mid++;
+                }
+                else
+                {
+                    res.push_back({nums[left], nums[mid], nums[right]});
+                    right--;
+                    mid++;
+                    while (right > mid && nums[right] == nums[right + 1]) right--;
+                    while (right > mid && nums[mid] == nums[mid - 1]) mid++;
+                }
+            }
+        }
+        return res;
+    }
+};
+```
+
+

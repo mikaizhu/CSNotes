@@ -709,3 +709,94 @@ public:
 ```
 
 
+## 18四数之和
+
+解决此题溢出的问题：
+
+```
+long sum = (long)nums[i] + (long)nums[j] + (long)nums[left] + (long)nums[right];
+```
+
+# 字符串
+
+## 541. 反转字符串 II
+
+1. 交换两个字符的位置
+
+```
+while (left <= right)
+{
+  swap(s[left], s[right]);
+  left++;
+  right--;
+}
+```
+
+2. reverse的写法
+
+```
+reverse(s.begin() + left, s.begin() + right + 1);
+
+假如字符串是as
+说明: 比如是reverse(s.begin(), s.begin() + 1)
+本来以为会将as反转过来, 其实不会，要s.begin() + 2 才会
+```
+
+## 剑指Offer 05.替换空格
+
+两种方法，第一种要申请额外的空间, 使用字符串的拼接
+
+```
+class Solution {
+public:
+    string replaceSpace(string s) {
+        string res = "";
+        for (char c : s)
+        {
+            if (c == ' ') res += "%20";
+            else res += c;
+        }
+        return res;
+    }
+};
+```
+
+另一种是提前申请空间，然后将字符补充进去，所以需要从右边往左遍历
+
+```
+class Solution {
+public:
+    string replaceSpace(string s) {
+        // 统计有多少个空格
+        int count = 0;
+        for (char c : s)
+            if (c == ' ') count++;
+        if (count == 0) return s;
+        int left = s.size() - 1;
+        s.resize(s.size() + 2*count); 
+        // 2是多出来的字符长度, risize后，末尾都是空字符
+        // 然后从右边开始遍历, 遇到空格就向右边移动，所以从右边开始遍历
+        int right = s.size() - 1;
+        while (left >= 0)
+        {
+            if (s[left] != ' ') 
+            {
+                s[right] = s[left];
+                right--;
+            }
+            else
+            {
+                s[right] = '0';
+                s[right-1] = '2';
+                s[right-2] = '%';
+                right -= 3;
+            }
+            left--;
+        }
+        return s;
+    }
+};
+
+```
+
+

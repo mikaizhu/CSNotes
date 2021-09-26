@@ -20,8 +20,10 @@ void print(vector<vector<int> > &v)
 
 int main()
 {
-    set<int> s;
-    s = {1, 2, 3};
-    cout << s.find(it);
+    string s = "abc";
+    string v(s.begin(), s.begin()+1);
+    for (char c : v)
+        cout << c;
+    cout << endl;
 }
 

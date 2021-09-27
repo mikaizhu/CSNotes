@@ -6,15 +6,18 @@
    * [数据结构与算法](#数据结构与算法)
 * [数据结构与算法](#数据结构与算法-1)
 
-<!-- Added by: zwl, at: 2021年 9月26日 星期日 14时58分05秒 CST -->
+<!-- Added by: zwl, at: 2021年 9月27日 星期一 10时50分10秒 CST -->
 
 <!--te-->
 
 
 # 推荐教程
 
-- https://github.com/youngyangyang04/leetcode-master
-
+- [leetcode刷题攻略](https://github.com/youngyangyang04/leetcode-master) 
+- [Be A Professional Programmer](https://github.com/stanzhai/be-a-professional-programmer) 
+- [Linux Command](https://github.com/jaywcjlove/linux-command) 
+- [Github Rank](https://github.com/jaywcjlove/github-rank) 
+- [Hello Github](https://github.com/521xueweihan/HelloGitHub) 
 
 [【↥ back to top】](#目录)
 ## 数据结构与算法

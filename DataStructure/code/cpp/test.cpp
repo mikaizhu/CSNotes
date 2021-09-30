@@ -4,6 +4,9 @@
 #include <vector>
 #include <algorithm>
 #include <set>
+#include <stack>
+#include <queue>
+
 
 using namespace std;
 
@@ -20,10 +23,10 @@ void print(vector<vector<int> > &v)
 
 int main()
 {
-    string s = "abc";
-    string v(s.begin(), s.begin()+1);
-    for (char c : v)
-        cout << c;
-    cout << endl;
+    stack<int> s1;
+    s1.push(1);
+    int res = s1.pop();
+    cout << res << endl;
+    cout << s1.empty() << endl;
 }
 

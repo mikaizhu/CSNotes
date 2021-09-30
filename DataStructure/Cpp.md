@@ -248,7 +248,6 @@ unordered_set<ListNode *> visited;
 
 ```
 
-<++>
 
 ## 633. 平方数之和
 
@@ -797,6 +796,116 @@ public:
     }
 };
 
+```
+
+# 栈与队列
+
+队列能实现的操作有以下几种：
+
+- pop()
+- push()
+- empty()
+
+
+## 用栈实现队列
+
+如果要用两个栈实现队列，队列是先进先出，而栈是先进后出，如果利用两个栈，就可以
+实现先进先出。
+
+如果一个栈是先进后出，将一个栈的元素再输入到另一个栈中，两个先进后出，就变成先
+进后出了。
+
+- [参考代码](./code/cpp/MyQueue_232.cpp) 
+
+## 用队列实现栈
+
+可以使用两个队列来实现，用一个队列进行数据备份，队列可以使用的操作有
+
+- size()
+- front()
+- back()
+- pop()
+
+## 有效括号
+
+利用栈的思想，最完美的写法如下：
+
+```
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<int> st;
+        for (char c : s)
+        {
+            if (c == '(') st.push(')');
+            else if (c == '{') st.push('}');
+            else if (c == '[') st.push(']');
+            // 进过上面if else后，如果stack为空，说明没有左括号，输入只有右括号
+            else if (st.empty() || st.top() != c) return false;
+            else st.pop();
+        }
+        return st.empty();
+    }
+};
+```
+
+
+## Leetcode 1047 删除字符串中的所有相邻重复项
+
+输入字符串 “abbaca”
+其中bb相邻，先删除bb，删除后aa变成相邻的，于是删除aa，最后剩下ca返回
+
+思路就是用一个栈，算法实现后栈内会剩下 a c
+
+对字符串拼接然后反转字符串，就可以得到答案
+
+        s = string("");
+        while (!st.empty())
+        {
+            s += st.top();
+            st.pop();
+        }
+        reverse(s.begin(), s.end());
+
+
+另一个思路是直接拼接和反转字符串一起
+
+        s = string("");
+        while (!st.empty())
+        {
+            s = st.top() + s;
+            st.pop();
+        }
+
+第二种超时了，不知道是什么原因？
+
+```
+
+```
+
+上面要用到额外的空间，另一种方法可以直接使用字符串作为栈的形式，要用到字符串的
+几个方法:
+
+- empty()
+- back()
+- push_back()
+- pop_back()
+
+```
+class Solution {
+public:
+    string removeDuplicates(string s) {
+        string res;
+        for (char c : s)
+        {
+            if (res.empty() || res.back() != c)
+                res.push_back(c);
+            else
+                res.pop_back();
+        }
+        return res;
+    }
+};
 ```
 
 

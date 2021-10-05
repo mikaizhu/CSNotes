@@ -6,11 +6,8 @@
 * [学习路线](#学习路线)
 * [cpp面经](#cpp面经)
 * [数据结构与算法](#数据结构与算法)
-   * [vim 打开二进制文件](#vim-打开二进制文件)
-   * [字符串与数字之间的转换](#字符串与数字之间的转换)
-* [数据结构与算法](#数据结构与算法-1)
 
-<!-- Added by: zwl, at: 2021年10月 4日 星期一 17时38分33秒 CST -->
+<!-- Added by: zwl, at: 2021年10月 5日 星期二 19时38分16秒 CST -->
 
 <!--te-->
 
@@ -44,33 +41,6 @@
 - 牛客网：https://www.nowcoder.com/discuss/84005
 - leetcode: https://leetcode-cn.com/circle/discuss/f40g4J/
 - github: https://github.com/huihut/interview
-
-[【↥ back to top】](#目录)
-# 数据结构与算法
-
-## vim 打开二进制文件
-
-```
-转换成二进制
-:% ! xxd
-
-转回原来的
-:% ! xxd -r
-```
-
-
-## 字符串与数字之间的转换
-
-常用知识点：
-
-```
-string s = "123";
-int i = stoi(s); // 字符串转数字
-// stod (s to double)
-// stol (s to long)
-cout << i << endl;
-s = to_string(i);
-```
 
 [【↥ back to top】](#目录)
 # 数据结构与算法

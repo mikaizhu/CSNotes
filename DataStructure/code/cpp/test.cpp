@@ -23,10 +23,9 @@ void print(vector<vector<int> > &v)
 
 int main()
 {
-    stack<int> s1;
-    s1.push(1);
-    int res = s1.pop();
-    cout << res << endl;
-    cout << s1.empty() << endl;
+    vector<int> t = {1, 2, 3, 4};
+    int res;
+    res = *max_element(t.begin(), t.begin() + 4);
+    cout << res; 
 }
 

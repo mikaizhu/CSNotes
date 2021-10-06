@@ -4,13 +4,19 @@ md_toc_path=./src/gh-md-toc
 
 # if you have more files , please split with space
 # -n 参数让光标不会换行显示
-echo -n "please input files: "
-read files
+# echo -n "please input files: "
+# read files
 
 # 如果输入的是回车键，那么直接默认使用read me文件
-if [ $files=='\n' ]; then
-  files=README.md
-fi
+# if [ $files=='\n' ]; then
+  # files=README.md
+# fi
+files=(
+  /Users/zwl/Desktop/CSNotes/README.md
+  /Users/zwl/Desktop/CSNotes/DataStructure/README.md
+  /Users/zwl/Desktop/CSNotes/ComputerNetwork/README.md
+  /Users/zwl/Desktop/CSNotes/OperatingSystem/README.md
+)
 
 # while read files;
 for file in ${files}
@@ -35,4 +41,3 @@ do
   # 因为会生成一些备份文件，这里不需要直接rm
   ls ${file}.* | while read line; do rm $line; done
 done
-

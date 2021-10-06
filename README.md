@@ -7,7 +7,7 @@
 * [cpp面经](#cpp面经)
 * [数据结构与算法](#数据结构与算法)
 
-<!-- Added by: zwl, at: 2021年10月 5日 星期二 20时37分41秒 CST -->
+<!-- Added by: zwl, at: 2021年10月 6日 星期三 14时34分27秒 CST -->
 
 <!--te-->
 
@@ -18,12 +18,13 @@
 - Linux Command: https://github.com/jaywcjlove/linux-command
 - Github Rank: https://github.com/jaywcjlove/github-rank
 - Hello Github: https://github.com/521xueweihan/HelloGitHub
-- 软件工程师的学习计划：https://github.com/jwasham/coding-interview-university/blob/main/translations/README-cn.md
 - csNotes: https://github.com/CyC2018/CS-Notes
+
+- [软件工程师的学习计划](https://github.com/jwasham/coding-interview-university/blob/main/translations/README-cn.md) 
 
 - [计算机组成原理B站视频教程](https://www.bilibili.com/video/BV1BE411D7ii?from=search&seid=69168175607278588&spm_id_from=333.337.0.0) 
 
-- [B站王道计算机网络视频](bilibili.com/video/BV19E411D78Q?from=search&seid=7071457653853770383&spm_id_from=333.337.0.0) 
+- [B站王道计算机网络视频](https://www.bilibili.com/video/BV19E411D78Q?from=search&seid=7071457653853770383&spm_id_from=333.337.0.0) 
 
 - [B站王道操作系统视频教程](https://www.bilibili.com/video/BV1YE411D7nH?from=search&seid=3708070542596072014&spm_id_from=333.337.0.0) 
 

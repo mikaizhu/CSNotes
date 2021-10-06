@@ -80,4 +80,70 @@ priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> _que; // 小顶堆�
 现
 ```
 
+## 二叉树
+
+二叉树节点的定义：
+
+```
+struct treeNode {
+  public:
+    int val;
+    treeNode *left;
+    treeNode *right;
+    treeNode() : val(0), left(NULL), right(NULL) {}; // 初始化
+    treeNode(int val) : val(val), left(NULL), right(NULL) {}; // 初始化
+    treeNode(int val, treeNode *left, treeNode *right) : val(val), left(left), right(right) {}; // 初始化
+};
+```
+
+前中后序遍历：[参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86.md) 
+
+前序
+
+```
+// 不用this也可以
+class Solution {
+public:
+    void traversal(TreeNode *root, vector<int>& res) {
+        if (root == NULL) return;
+        res.push_back(root->val);
+        this->traversal(root->left, res);
+        this->traversal(root->right, res);
+    }
+
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+        this->traversal(root, res);
+        return res;
+    }
+};
+```
+
+
+# 递归
+
+递归三部曲：
+
+1. 确定递归函数需要的参数
+2. 确定递归的终止条件
+3. 确定递归的内容，哪些逻辑需要重复处理
+
+# 二分搜索
+
+二分查找的序列，一定要事先排序好.
+
+模板: 当我们将区间[l, r]划分成[l, mid]和[mid + 1, r]时，其更新操作是r = mid或者l = mid + 1，计算mid时不需要加1，即mid = (l + r)/2。
+
+Q1: right长度是多少呢？nums.size() - 1 还是 nums.size() ? 
+
+这个要具体问题具体分析，如果right = nums.size() - 1, 那么循环条件是l < r的时候
+，l最多可以返回到nums.size(), 如果题目的答案可能大于nums.size(), 那么right 应
+该等于 nums.size()
+
+Q2: 为什么循环的结束条件是 while (l < r) 而不是 while (l <= r) ?
+
+如果使用上面模板，则不应该使用小于等于, 这样可能回进入死循环, 这里要具体问题具
+体分析
+
+参考：https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/solution/tu-jie-er-fen-zui-qing-xi-yi-dong-de-jia-ddvc/
 

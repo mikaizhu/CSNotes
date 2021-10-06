@@ -19,6 +19,7 @@ def add_to_top(file):
                 except:
                     continue
 
+    if len(content) < 2: return
     content.pop(0)
     content.pop(0)
 

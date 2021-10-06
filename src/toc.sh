@@ -19,7 +19,7 @@ files=(
 )
 
 # while read files;
-for file in ${files}
+for file in ${files[@]} # 使用@遍历所有文件
 do 
   # 首先要判断当前目录下是否存在该文件, -q命令可以不显示输出结果
   # 如果存在，则判断该文件中是否含有这些字符串

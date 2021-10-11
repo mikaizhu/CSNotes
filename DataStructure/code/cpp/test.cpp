@@ -23,9 +23,9 @@ void print(vector<vector<int> > &v)
 
 int main()
 {
-    vector<int> t = {1, 2, 3, 4};
-    int res;
-    res = *max_element(t.begin(), t.begin() + 4);
-    cout << res; 
+    vector<int> vec;
+    vec.push_back(NULL);
+    for (int i : vec) {
+        cout << i << endl;
+    }
 }
-

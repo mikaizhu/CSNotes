@@ -2,6 +2,7 @@
 
 <!--ts-->
 * [目录](#目录)
+* [说明](#说明)
 * [推荐教程](#推荐教程)
    * [网站推荐](#网站推荐)
    * [视频教程](#视频教程)
@@ -10,10 +11,21 @@
 * [cpp面经](#cpp面经)
 * [数据结构与算法](#数据结构与算法)
 
-<!-- Added by: zwl, at: 2021年10月13日 星期三 21时14分05秒 CST -->
+<!-- Added by: zwl, at: 2022年 2月12日 星期六 22时44分26秒 CST -->
 
 <!--te-->
 
+# 说明
+
+这个仓库用来记录我自己找工作的过程❤️
+
+经验推荐:
+
+- [tips_for_interview](https://github.com/conanhujinming/tips_for_interview/blob/master/README-zh_CN.md)
+
+
+
+[【↥ back to top】](#目录)
 # 推荐教程
 
 ## 网站推荐

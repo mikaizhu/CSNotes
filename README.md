@@ -11,7 +11,7 @@
 * [cpp面经](#cpp面经)
 * [数据结构与算法](#数据结构与算法)
 
-<!-- Added by: zwl, at: Sun Feb 13 22:48:49 CST 2022 -->
+<!-- Added by: zwl, at: Sun Feb 13 22:50:38 CST 2022 -->
 
 <!--te-->
 
@@ -27,8 +27,8 @@
 - 基础(编程语言C++/java，计算机组成原理，计算机网络，操作系统, 数据库)
 
 参考资料：
-- [The Missing Semester of Your CS Education [Notes]](https://missing-semester-cn.github.io/), this is the [[vidio]](https://www.bilibili.com/video/BV1x7411H7wa?from=search&seid=5808957610484965251&spm_id_from=333.337.0.0) 
-- [计算机速成课 [Notes]](https://github.com/1c7/Crash-Course-Computer-Science-Chinese) , this is the [[vidio]](www.bilibili.com/video/av21376839/) 
+- [The Missing Semester of Your CS Education [Notes]](https://missing-semester-cn.github.io/), this is the [[Video]](https://www.bilibili.com/video/BV1x7411H7wa?from=search&seid=5808957610484965251&spm_id_from=333.337.0.0) 
+- [计算机速成课 [Notes]](https://github.com/1c7/Crash-Course-Computer-Science-Chinese) , this is the [[Video]](www.bilibili.com/video/av21376839/) 
 - [CS 自学指南 [Notes]](https://csdiy.wiki/) 
 
 

@@ -12,7 +12,7 @@
 * [cpp面经](#cpp面经)
 * [数据结构与算法](#数据结构与算法)
 
-<!-- Added by: zwl, at: 2022年 2月15日 星期二 15时13分52秒 CST -->
+<!-- Added by: zwl, at: 2022年 2月15日 星期二 15时33分58秒 CST -->
 
 <!--te-->
 
@@ -47,7 +47,8 @@
 
 **操作系统资料**:
 - MIT6.S081
-  - [中文资料](https://github.com/huihongxiao/MIT6.S081) 
+  - [中文资料](https://github.com/huihongxiao/MIT6.S081), [其他资料](https://github.com/SmallPond/MIT6.828_OS)
+  - [flash-linux0.11-talk](https://github.com/sunym1993/flash-linux0.11-talk) 
   - 一个网站：http://doraemonzzz.com/
 
 
@@ -55,7 +56,6 @@
 # 时间计划安排
 
 前期先学习**算法** , **计算机网络** , **操作系统** , **编程语言** 的基础，后面再确定技术栈, 要相信**基础比什么都重要**。
-
 
 经验推荐:
 

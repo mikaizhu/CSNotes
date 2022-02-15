@@ -3,6 +3,7 @@
 <!--ts-->
 * [目录](#目录)
 * [说明](#说明)
+* [时间计划安排](#时间计划安排)
 * [推荐教程](#推荐教程)
    * [网站推荐](#网站推荐)
    * [视频教程](#视频教程)
@@ -11,7 +12,7 @@
 * [cpp面经](#cpp面经)
 * [数据结构与算法](#数据结构与算法)
 
-<!-- Added by: zwl, at: Sun Feb 13 22:50:38 CST 2022 -->
+<!-- Added by: zwl, at: 2022年 2月15日 星期二 15时13分52秒 CST -->
 
 <!--te-->
 
@@ -30,6 +31,30 @@
 - [The Missing Semester of Your CS Education [Notes]](https://missing-semester-cn.github.io/), this is the [[Video]](https://www.bilibili.com/video/BV1x7411H7wa?from=search&seid=5808957610484965251&spm_id_from=333.337.0.0) 
 - [计算机速成课 [Notes]](https://github.com/1c7/Crash-Course-Computer-Science-Chinese) , this is the [[Video]](www.bilibili.com/video/av21376839/) 
 - [CS 自学指南 [Notes]](https://csdiy.wiki/) 
+
+**计算机网络资料**:
+- CS144
+  - 中文资料: https://gitee.com/kangyupl/sponge
+  - 下面文章汇总, [[HERE]](http://doraemonzzz.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/) 
+  - [实验环境配置](http://doraemonzzz.com/2021/12/12/2021-12-12-CS144-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/) 
+  - [lab0[实验]](http://doraemonzzz.com/2021/12/12/2021-12-12-CS144-Lab0/#%E6%B5%8B%E8%AF%95-1), [lab0[翻译]](http://doraemonzzz.com/2022/01/30/2022-1-30-CS144-Lab0%E7%BF%BB%E8%AF%91/) 
+  - [lab1[实验]](http://doraemonzzz.com/2021/12/12/2021-12-12-CS144-Lab1/), [lab1[翻译]](http://doraemonzzz.com/2022/01/30/2022-1-30-CS144-Lab1%E7%BF%BB%E8%AF%91/) 
+  - [lab2[实验]](http://doraemonzzz.com/2021/12/27/2021-12-27-CS144-Lab2/), [lab2[翻译]](http://doraemonzzz.com/2021/12/27/2021-12-27-CS144-Lab2%E7%BF%BB%E8%AF%91/) 
+  - [lab3[实验]](http://doraemonzzz.com/2022/01/08/2022-1-8-CS144-Lab3/), [lab3[翻译]](http://doraemonzzz.com/2022/01/08/2022-1-8-CS144-Lab3%E7%BF%BB%E8%AF%91/) 
+  - [lab4[实验]](http://doraemonzzz.com/2022/01/22/2022-1-22-CS144-Lab4/), [lab4[翻译]](http://doraemonzzz.com/2022/01/22/2022-1-22-CS144-Lab4%E7%BF%BB%E8%AF%91/) 
+  - [lab5[实验]](http://doraemonzzz.com/2022/01/22/2022-1-22-CS144-Lab5/), [lab5[翻译]](http://doraemonzzz.com/2022/01/22/2022-1-22-CS144-Lab5%E7%BF%BB%E8%AF%91/) 
+  - [lab6[实验]](http://doraemonzzz.com/2022/01/22/2022-1-22-CS144-Lab6/), [lab6[翻译]](http://doraemonzzz.com/2022/01/22/2022-1-22-CS144-Lab6%E7%BF%BB%E8%AF%91/) 
+
+**操作系统资料**:
+- MIT6.S081
+  - [中文资料](https://github.com/huihongxiao/MIT6.S081) 
+  - 一个网站：http://doraemonzzz.com/
+
+
+[【↥ back to top】](#目录)
+# 时间计划安排
+
+前期先学习**算法** , **计算机网络** , **操作系统** , **编程语言** 的基础，后面再确定技术栈, 要相信**基础比什么都重要**。
 
 
 经验推荐:

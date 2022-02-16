@@ -3,6 +3,8 @@
 记录一些课程中的重点
 
 - [shell 命令搜索网站](https://wangchujiang.com/linux-command/) 
+- [linux man page [English]](https://man7.org/linux/man-pages/)
+- [linux man page [中文]](https://manpages.debian.org/unstable/manpages-zh/Button.3tk.zh_CN.html) 
 
 # 01概览与shell笔记
 
@@ -78,3 +80,103 @@ open: Permission denied
 echo 3 | sudo tee brightness # 程序会以sudo的权限先打开文件，然后以管道操作符以3为输出流作为这个程序的输入流
 ```
 
+# 02 shell命令的使用
+
+1. 什么是shell进程替换？
+
+参考：
+- http://c.biancheng.net/view/3025.html
+- https://missing-semester-cn.github.io/2020/shell-tools/
+
+与进程替换相对应的是命令替换, 命令替换是把一个命令的输出结果赋值给另一个变量，例如`dir_files=`ls -l``或`date_time=$(date)`.
+
+进程替换有什么作用？
+
+例如:
+
+```
+echo "http://c.biancheng.net/shell/" | read
+echo $REPLY
+```
+
+以上代码输出结果总是为空，因为 echo 命令在父 Shell 中执行，而 read 命令在子 Shell 中执行，当 read 执行结束时，子 Shell 被销毁，REPLY 变量也就消失了。
+管道中的命令总是在子 Shell 中执行的，任何给变量赋值的命令都会遭遇到这个问题。进程替换可以保证前后两个命令处于同一个进程中.
+
+> `read`命令是从输入流中读取数据，然后保存在后面的变量中，如果没有提供变量，则默认保存在`$RAPLY`中.
+
+使用进程替换的写法为：
+
+方法1:
+```
+read < <(echo "http://c.biancheng.net/shell/")
+echo $REPLY
+```
+
+方法2:
+
+```
+echo "C语言中文网" > >(read; echo "你好，$REPLY")
+```
+
+方法1中，`<(script)` 括号包裹起来的为脚本程序，`<()` 将程序的输出保存，并用`<`重定向提供给read命令
+
+方法2中亦是如此
+
+**进程替换本质**:
+
+实际上进程替换会将进程与文件链接起来, 文件如下，`>()`只是一个文件.
+
+```
+[c.biancheng.net]$ echo >(true)
+/dev/fd/63
+[c.biancheng.net]$ echo <(true)
+/dev/fd/63
+[c.biancheng.net]$ echo >(true) <(true)
+/dev/fd/63 /dev/fd/62
+```
+
+分析下该命令：
+
+```
+echo "shellscript" > >(read; echo "hello, $REPLY")
+```
+
+`>()`会创建一个临时文件，`>`将shellscript重定向到该文件中
+
+`>()`中的第一个命令是 read，它需要从标准输入中读取数据，此时就用`/dev/fd/63`作为输入文件，把该文件的内容交给 read 命令，
+接着使用 echo 命令输出 read 读取到的内容。
+
+可以看到，`/dev/fd/63`文件起到了数据中转或者数据桥梁的作用，借助重定向，它将`>()`内部的命令和外部的命令联系起来，使得数据能够在这些命令之间流通。
+
+2. 什么是shell的通配？
+
+当想要利用通配符进行匹配时，你可以分别使用`?` 和 `*` 来匹配一个或任意个字符。
+例如，对于文件`foo`, `foo1`, `foo2`, `foo10` 和 `bar`, `rm` `foo?`这条命令会删除`foo1` 和 `foo2` ，而`rm foo*` 则会删除除了`bar`之外的所有文件。
+
+花括号`{}`当你有一系列的指令，其中包含一段公共子串时，可以用花括号来自动展开这些命令。这在批量移动或转换文件时非常方便。
+
+```
+convert image.{png,jpg}
+# 会展开为
+convert image.png image.jpg
+
+cp /path/to/project/{foo,bar,baz}.sh /newpath
+# 会展开为
+cp /path/to/project/foo.sh /path/to/project/bar.sh /path/to/project/baz.sh /newpath
+
+# 也可以结合通配使用
+mv *{.py,.sh} folder
+# 会移动所有 *.py 和 *.sh 文件
+
+mkdir foo bar
+
+# 下面命令会创建foo/a, foo/b, ... foo/h, bar/a, bar/b, ... bar/h这些文件
+touch {foo,bar}/{a..h}
+touch foo/x bar/y
+# 比较文件夹 foo 和 bar 中包含文件的不同
+diff <(ls foo) <(ls bar)
+# 输出
+# < x
+# ---
+# > y
+```

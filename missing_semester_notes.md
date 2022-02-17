@@ -180,3 +180,41 @@ diff <(ls foo) <(ls bar)
 # ---
 # > y
 ```
+
+03 data wrangling(数据处理)
+
+本实验利用journalctl来获取要处理的数据，从中整理出有价值的信息，以及学习相关工具的使用
+
+1. 什么是journalctl, 如何好好利用
+
+journalctl 是系统查看日志的一个程序，在Linux服务器上输入这个命令可以查看系统日志，包括有谁登陆了我们的系统
+
+常用命令：
+
+```
+journalctl -n 20 # 使用-n参数可以显示最后n行日志，如果不指定行数，默认显示10行。
+journalctl --since=-30m # 显示最近30分钟的日志。
+journalctl --since="2021-01-01" # 显示2021年以来的日志。
+journalctl --since=today # 显示今天的日志。
+```
+
+还可以通过journalctl查看ssh登陆的信息
+
+```
+ssh root@182.xxx.xxx 'journalctl -n 20' | grep ssh > ssh.log
+```
+
+这样就会将结果保存到本地的`ssh.log` 文件中
+
+2. `sed` 命令的使用方式
+- TODO
+
+3. `awk` 命令的使用方式
+- TODO
+
+4. `grep` 命令的使用方式
+- TODO
+
+3. 正则表达式
+
+- [正则表达式练习](https://regexone.com/) 

@@ -181,7 +181,7 @@ diff <(ls foo) <(ls bar)
 # > y
 ```
 
-03 data wrangling(数据处理)
+# 03 data wrangling(数据处理)
 
 本实验利用journalctl来获取要处理的数据，从中整理出有价值的信息，以及学习相关工具的使用
 
@@ -218,3 +218,123 @@ ssh root@182.xxx.xxx 'journalctl -n 20' | grep ssh > ssh.log
 3. 正则表达式
 
 - [正则表达式练习](https://regexone.com/) 
+
+# 04 commandline environment
+
+1. 当我们使用`control+c` 终止命令的时候，其原理是什么？
+
+其使用的是UNIX的信号原理，使用`man signal` 可以查看这些信号，使用control+c后，shell会向该进程发送sigint(signal interupt)信号，程序捕捉到后会终止
+
+我们可以使用代码让程序忽略SIGINT信号, 这样control+c就不能中断该程序
+
+`control+z`命令会终止该程序, suspend. 
+
+我们可以使用 `fg` 或 `bg` 命令恢复暂停的工作。它们分别表示在前台继续或在后台继续。
+
+`jobs` 命令会列出当前终端会话中尚未完成的全部任务。(注意是当前终端下)
+
+当我们关闭终端，该终端会向程序发出SIGHUP信号，程序接收后就会断开程序, 因此使用`nohup` 命令让该进程忽略 SIGHUP信号, 在末尾加`&` 表示让该程序后台运行
+因此两者结合表示让该代码在后台运行，并忽略SIGHAP信号
+
+我们还可以使用`kill -<> PID` 来向进程发送信号, 同时每个信号都有对应的index，如`kill -9 pid` 
+
+```
+$ sleep 1000
+^Z
+[1]  + 18653 suspended  sleep 1000
+
+$ nohup sleep 2000 &
+[2] 18745
+appending output to nohup.out
+
+$ jobs
+[1]  + suspended  sleep 1000
+[2]  - running    nohup sleep 2000
+
+$ bg %1
+[1]  - 18653 continued  sleep 1000
+
+$ jobs
+[1]  - running    sleep 1000
+[2]  + running    nohup sleep 2000
+
+$ kill -STOP %1
+[1]  + 18653 suspended (signal)  sleep 1000
+
+$ jobs
+[1]  + suspended (signal)  sleep 1000
+[2]  - running    nohup sleep 2000
+
+$ kill -SIGHUP %1
+[1]  + 18653 hangup     sleep 1000
+
+$ jobs
+[2]  + running    nohup sleep 2000
+
+$ kill -SIGHUP %2
+```
+
+2. tmux的使用
+
+tmux 可以使用`tmux a` 来表示`tmux attach` 的缩写
+
+3. 什么是配置文件(dotfiles)
+
+很多程序的配置都是通过dotfiles来设置的（之所以称为点文件，是因为它们的文件名以 . 开头，例如 ~/.vimrc。也正因为此，它们默认是隐藏文件，ls并不会显示它们）。
+
+shell 的配置也是通过这类文件完成的。在启动时，您的 shell 程序会读取很多文件以加载其配置项。根据 shell 本身的不同，您从登录开始还是以交互的方式完成这一过程可能会有很大的不同。关于这一话题，这里 有非常好的资源
+
+对于 bash来说，在大多数系统下，您可以通过编辑 .bashrc 或 .bash_profile 来进行配置。在文件中您可以添加需要在启动时执行的命令，例如上文我们讲到过的别名，或者是您的环境变量。
+
+如何利用工具管理dotfiles？参考：https://dotfiles.github.io/utilities/
+
+4. 如何使用ssh免密码登陆
+
+本地生成密钥，使用 `ssh-keygen` 命令可以生成一对密钥, 我们将公钥给服务器，私钥自己保留，登陆的时候服务器会验证私钥，从而不需要密码.
+
+我们除了可以将文件传给服务器，还可以使用`ssh-copy-id` 将公钥传到服务器中
+
+```
+cat .ssh/id_ed25519.pub | ssh foobar@remote 'cat >> ~/.ssh/authorized_keys'
+```
+
+或者使用上面命令传
+
+5. 如何通过ssh复制文件到服务器上
+
+当有大量文件或者文件很大时，使用rsync命令更好，如果突然中断，可以从中断续传，并且可以检测哪些文件重复了
+
+ssh+tee, 最简单的方法是执行 ssh 命令，然后通过这样的方法利用标准输入实现 cat localfile | ssh remote_server tee serverfile。回忆一下，tee 命令会将标准输出写入到一个文件；
+
+scp ：当需要拷贝大量的文件或目录时，使用scp 命令则更加方便，因为它可以方便的遍历相关路径。语法如下：scp path/to/local_file remote_host:path/to/remote_file；
+
+rsync 对 scp 进行了改进，它可以检测本地和远端的文件以防止重复拷贝。它还可以提供一些诸如符号连接、权限管理等精心打磨的功能。甚至还可以基于 --partial标记实现断点续传。rsync 的语法和scp类似；
+
+6. 如何配置ssh文件
+
+- 可以通过alias
+- 通过~/.ssh/config
+
+如：
+
+```
+Host vm
+    User foobar
+    HostName 172.16.174.141
+    Port 2222
+    IdentityFile ~/.ssh/id_ed25519
+    LocalForward 9999 localhost:8888
+```
+
+7. 什么是端口转发, 和端口映射有什么区别？
+
+端口转发是通过ssh来进行的信息传输，有数据加密，而端口映射没有
+
+端口转发和端口映射差不多，都是将内网服务器的某个端口，与公网服务器的某个端口链接起来，这样如果直接访问公网的这个端口，就可以与内网进行通信
+
+
+8. link文件有什么用？(ln -s)
+
+当我们点击link文件后，link 知道源文件在哪
+
+

@@ -2,17 +2,42 @@
 <!--ts-->
 * [目录](#目录)
 * [推荐教程](#推荐教程)
+* [CS144教程](#cs144教程)
+   * [环境配置](#环境配置)
 * [知识点](#知识点)
 * [计算机网络体系结构的形成](#计算机网络体系结构的形成)
 * [OSI参考模型](#osi参考模型)
 * [网络端口](#网络端口)
 
-<!-- Added by: zwl, at: Fri Feb 18 18:11:20 CST 2022 -->
+<!-- Added by: zwl, at: Mon Feb 21 22:35:39 CST 2022 -->
 
 <!--te-->
 # 推荐教程
 
 - [B站王道计算机网络视频](bilibili.com/video/BV19E411D78Q?from=search&seid=7071457653853770383&spm_id_from=333.337.0.0) 
+
+
+[【↥ back to top】](#目录)
+
+
+[【↥ back to top】](#目录)
+# CS144教程
+## 环境配置
+
+```
+wget https://web.stanford.edu/class/cs144/vm_howto/setup_dev_env.sh
+chmod +x setup_dev_env.sh
+./setup_dev_env
+sudo apt-get install doxygen clang-format
+sudo apt install cmake
+git clone https://gitee.com/kangyupl/sponge
+git checkout -b master origin/master
+mkdir build && cd build
+cmake ..
+make format
+make -j4
+make check_lab0
+```
 
 
 [【↥ back to top】](#目录)

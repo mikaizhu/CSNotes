@@ -12,7 +12,7 @@
 * [cpp面经](#cpp面经)
 * [数据结构与算法](#数据结构与算法)
 
-<!-- Added by: zwl, at: Mon Feb 21 22:35:37 CST 2022 -->
+<!-- Added by: zwl, at: Fri Feb 25 20:33:32 CST 2022 -->
 
 <!--te-->
 
@@ -35,6 +35,7 @@
 **计算机网络资料**:
 - CS144
   - 中文资料: https://gitee.com/kangyupl/sponge
+  - [其他比较好的资料](https://www.cnblogs.com/kangyupl/p/stanford_cs144_labs.html) 
   - 下面文章汇总, [[HERE]](http://doraemonzzz.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/) 
   - [实验环境配置](http://doraemonzzz.com/2021/12/12/2021-12-12-CS144-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/) 
   - [lab0[实验]](http://doraemonzzz.com/2021/12/12/2021-12-12-CS144-Lab0/#%E6%B5%8B%E8%AF%95-1), [lab0[翻译]](http://doraemonzzz.com/2022/01/30/2022-1-30-CS144-Lab0%E7%BF%BB%E8%AF%91/) 

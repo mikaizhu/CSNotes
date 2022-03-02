@@ -11,18 +11,19 @@
 * [OSI参考模型](#osi参考模型)
 * [网络端口](#网络端口)
 
-<!-- Added by: zwl, at: Tue Mar  1 11:41:50 CST 2022 -->
+<!-- Added by: zwl, at: Wed Mar  2 19:02:21 CST 2022 -->
 
 <!--te-->
 # 推荐教程
 
-- [B站王道计算机网络视频](bilibili.com/video/BV19E411D78Q?from=search&seid=7071457653853770383&spm_id_from=333.337.0.0) 
+- [B站计算机网络视频](https://www.bilibili.com/video/BV1c4411d7jb?from=search&seid=1657598163721616403&spm_id_from=333.337.0.0) 
 - [cpp socket通信教程](http://c.biancheng.net/cpp/socket/):
  这里面还有很多其他知识点，可以查看
 
 - [python
   版本网络通信](https://github.com/moranzcw/Computer-Networking-A-Top-Down-Approach-NOTES):
   该教程使用书籍**计算机网络-自顶向下** 
+
 
 [【↥ back to top】](#目录)
 # CS144教程

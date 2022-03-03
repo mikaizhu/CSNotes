@@ -13,7 +13,7 @@
 * [递归](#递归)
 * [二分搜索](#二分搜索)
 
-<!-- Added by: zwl, at: Thu Mar  3 16:52:42 CST 2022 -->
+<!-- Added by: zwl, at: Thu Mar  3 19:13:14 CST 2022 -->
 
 <!--te-->
 # 数据结构与算法
@@ -21,6 +21,9 @@
 ## 推荐资料
 
 - [数据结构与算法 [Fucking Algorithm]](https://github.com/labuladong/fucking-algorithm) 
+- [代码随想录](https://github.com/youngyangyang04/leetcode-master) 
+
+刷数据结构与算法的时候，遇到cpp语法问题，回到[CppNotes](https://github.com/mikaizhu/CppNotes) 进行补充
 
 ## vim 打开二进制文件
 

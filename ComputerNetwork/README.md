@@ -11,12 +11,13 @@
 * [OSI参考模型](#osi参考模型)
 * [网络端口](#网络端口)
 
-<!-- Added by: zwl, at: Fri Mar  4 17:10:12 CST 2022 -->
+<!-- Added by: zwl, at: Fri Mar  4 17:12:05 CST 2022 -->
 
 <!--te-->
 # 推荐教程
 
 - [B站计算机网络视频](https://www.bilibili.com/video/BV1c4411d7jb?from=search&seid=1657598163721616403&spm_id_from=333.337.0.0) 
+- [B站视频笔记](https://github.com/BloothOfYouth/Computer-Network-Notes) 
 - [cpp socket通信教程](http://c.biancheng.net/cpp/socket/):
  这里面还有很多其他知识点，可以查看
 

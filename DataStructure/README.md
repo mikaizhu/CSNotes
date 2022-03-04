@@ -12,8 +12,9 @@
 * [二叉树](#二叉树)
 * [递归](#递归)
 * [二分搜索](#二分搜索)
+* [滑动窗口](#滑动窗口)
 
-<!-- Added by: zwl, at: Fri Mar  4 11:04:29 CST 2022 -->
+<!-- Added by: zwl, at: Fri Mar  4 17:10:12 CST 2022 -->
 
 <!--te-->
 # 数据结构与算法
@@ -198,3 +199,13 @@ public:
 - else return mid
 
 [讲解参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.md) 
+
+
+[【↥ back to top】](#目录)
+# 滑动窗口
+
+主要思路：
+
+- 窗口内是什么？
+- 如何移动窗口的起始位置？
+- 如何移动窗口的结束位置？

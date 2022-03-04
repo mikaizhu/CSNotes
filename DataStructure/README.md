@@ -13,7 +13,7 @@
 * [递归](#递归)
 * [二分搜索](#二分搜索)
 
-<!-- Added by: zwl, at: Thu Mar  3 19:13:14 CST 2022 -->
+<!-- Added by: zwl, at: Fri Mar  4 11:04:29 CST 2022 -->
 
 <!--te-->
 # 数据结构与算法
@@ -187,20 +187,14 @@ public:
 [【↥ back to top】](#目录)
 # 二分搜索
 
-二分查找的序列，一定要事先排序好.
+二分查找的序列, 需要满足的条件:
+- 数组已经排序好了
+- 需要查找的元素，在数组中是唯一的
 
-模板: 当我们将区间[l, r]划分成[l, mid]和[mid + 1, r]时，其更新操作是r = mid或者l = mid + 1，计算mid时不需要加1，即mid = (l + r)/2。
+二分查找有两种模板：这里只介绍一种[left, right], 两边都是闭区间, 流程如下：
+- while left <= right
+- if nums[mid] < target right = mid - 1 
+- else if nums [mid] > target left = mid + 1
+- else return mid
 
-Q1: right长度是多少呢？nums.size() - 1 还是 nums.size() ? 
-
-这个要具体问题具体分析，如果right = nums.size() - 1, 那么循环条件是l < r的时候
-，l最多可以返回到nums.size(), 如果题目的答案可能大于nums.size(), 那么right 应
-该等于 nums.size()
-
-Q2: 为什么循环的结束条件是 while (l < r) 而不是 while (l <= r) ?
-
-如果使用上面模板，则不应该使用小于等于, 这样可能回进入死循环, 这里要具体问题具
-体分析
-
-参考：https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/solution/tu-jie-er-fen-zui-qing-xi-yi-dong-de-jia-ddvc/
-
+[讲解参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.md) 

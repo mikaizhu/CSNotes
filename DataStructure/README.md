@@ -13,8 +13,9 @@
 * [递归](#递归)
 * [二分搜索](#二分搜索)
 * [滑动窗口](#滑动窗口)
+* [链表](#链表)
 
-<!-- Added by: zwl, at: Fri Mar  4 17:12:05 CST 2022 -->
+<!-- Added by: zwl, at: Sun Mar  6 19:36:54 CST 2022 -->
 
 <!--te-->
 # 数据结构与算法
@@ -22,7 +23,7 @@
 ## 推荐资料
 
 - [数据结构与算法 [Fucking Algorithm]](https://github.com/labuladong/fucking-algorithm) 
-- [代码随想录](https://github.com/youngyangyang04/leetcode-master) 
+- [代码随想录](https://github.com/youngyangyang04/leetcode-master#%E6%95%B0%E7%BB%84) 
 
 刷数据结构与算法的时候，遇到cpp语法问题，回到[CppNotes](https://github.com/mikaizhu/CppNotes) 进行补充
 
@@ -209,3 +210,9 @@ public:
 - 窗口内是什么？
 - 如何移动窗口的起始位置？
 - 如何移动窗口的结束位置？
+
+
+[【↥ back to top】](#目录)
+# 链表
+
+[参考笔记](https://github.com/mikaizhu/CppNotes#%E9%93%BE%E8%A1%A8) 

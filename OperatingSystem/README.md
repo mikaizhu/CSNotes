@@ -8,8 +8,9 @@
 * [第四回](#第四回)
 * [第五回](#第五回)
 * [第六回](#第六回)
+* [第七回](#第七回)
 
-<!-- Added by: zwl, at: Sun Mar  6 19:36:55 CST 2022 -->
+<!-- Added by: zwl, at: Mon Mar  7 10:11:06 CST 2022 -->
 
 <!--te-->
 # 操作系统
@@ -18,7 +19,7 @@
 - [哈工大操作系统 [MOOC]](https://www.icourse163.org/learn/HIT-1002531008?tid=1450346461#/learn/content?type=detail&id=1214728532&cid=1218670721&replay=true) 
 - [哈工大操作系统
   [bilibili]](https://www.bilibili.com/video/BV1d4411v7u7?from=search&seid=8612787840369428117&spm_id_from=333.337.0.0) 
-- [品读操作系统源码](https://github.com/sunym1993/flash-linux0.11-talk) 
+- [品读操作系统源码](https://github.com/sunym1993/flash-linux0.11-talk#%E5%B7%B2%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0) 
 
 
 [【↥ back to top】](#目录)
@@ -48,12 +49,13 @@
 # 第二回
 
 从上回开始，开机后，操作系统开始执行命令了，命令如下：
-- 将各个寄存器赋值[ds:0x9000, es:0x9000, cx:256, si:0, di:0]
-- 将ds开始往下的512字节的内容，复制到0x90000处(为啥是512字节？`rep movw`
+- 将各个寄存器赋值[ds:0x07c0, es:0x9000, cx:256, si:0, di:0]
+- 将ds开始的512字节(cx * 2)的内容，复制到0x90000处(为啥是512字节？`rep movw`
   命令表示复制一个字，每个字是16位，也就是2字节，重复该命令256次，)
-- 程序从0x9000 + go标记的偏移地址开始执行剩下的代码
-
+- 程序 跳转至go标记处，也就是0x9000 + go标记的偏移地址开始执行剩下的代码
 可以看到，第二回的代码就是将程序移动了个位置，将内容腾出空间来了
+
+> 内存复制是从(ds:si --> es:di)
 
 [reference](https://mp.weixin.qq.com/s/U-txDYt0YqLh5EeFOcB4NQ) 
 
@@ -84,7 +86,15 @@ ss,ds,cs,ip,es --> 0x90000 |    |
 > 3. 栈的位置要远远大于代码的位置0x90000，所以设置为0x9FF00,
 >    保证栈向下发展不会碰到其他段
 
-[reference](https://yidongmp.weixin.qq.com/s/90QBJ-lP_-du2qQJxNF-Fw) 
+> 1. 该部分就是将各个寄存器设置好了值
+> 2.
+> 再抽象点就是：该部分给如何访问代码，如何访问数据，如何访问栈进行了内存的初步规划
+
+[reference](https://mp.weixin.qq.com/s/90QBJ-lP_-du2qQJxNF-Fw) 
+
+
+总结下：该部分 `bootsect.s`
+代码，所做的就是对内存做了初步规划，同时将操作系统，从硬盘中，搬到了内存中
 
 
 [【↥ back to top】](#目录)
@@ -176,3 +186,10 @@ setup 0x90200        |     | <--  setup.s就是将电脑信息获取并存储，
 ```
 
 [reference](https://mp.weixin.qq.com/s/p1a6QxYZyMpJF__uBSE1Kg) 
+
+
+[【↥ back to top】](#目录)
+# 第七回
+
+
+[reference](https://mp.weixin.qq.com/s/S5zarr9BmLhUHAmdmeNypA) 

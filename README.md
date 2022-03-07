@@ -12,7 +12,7 @@
 * [cpp面经](#cpp面经)
 * [数据结构与算法](#数据结构与算法)
 
-<!-- Added by: zwl, at: Sun Mar  6 19:36:53 CST 2022 -->
+<!-- Added by: zwl, at: Mon Mar  7 10:11:04 CST 2022 -->
 
 <!--te-->
 
@@ -51,6 +51,10 @@
   - [中文资料](https://github.com/huihongxiao/MIT6.S081), [其他资料](https://github.com/SmallPond/MIT6.828_OS)
   - [flash-linux0.11-talk](https://github.com/sunym1993/flash-linux0.11-talk) 
   - 一个网站：http://doraemonzzz.com/
+
+**计算机组成原理** :
+
+- https://github.com/SSHeRun/CS-Xmind-Note
 
 
 [【↥ back to top】](#目录)

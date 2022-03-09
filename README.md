@@ -1,5 +1,11 @@
 # 目录
 
+- [数据结构与算法笔记](https://github.com/mikaizhu/CSNotes/tree/main/DataStructure) 
+- [计算机网络笔记](https://github.com/mikaizhu/CSNotes/tree/main/ComputerNetwork) 
+- [操作系统笔记](https://github.com/mikaizhu/CSNotes/tree/main/OperatingSystem) 
+- [missing semester笔记](https://github.com/mikaizhu/CSNotes/blob/main/missing_semester_notes.md) 
+
+
 <!--ts-->
 * [目录](#目录)
 * [说明](#说明)
@@ -12,7 +18,7 @@
 * [cpp面经](#cpp面经)
 * [数据结构与算法](#数据结构与算法)
 
-<!-- Added by: zwl, at: Wed Mar  9 08:49:00 CST 2022 -->
+<!-- Added by: zwl, at: Wed Mar  9 08:52:43 CST 2022 -->
 
 <!--te-->
 

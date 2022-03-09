@@ -5,7 +5,6 @@
 - [操作系统笔记](https://github.com/mikaizhu/CSNotes/tree/main/OperatingSystem) 
 - [missing semester笔记](https://github.com/mikaizhu/CSNotes/blob/main/missing_semester_notes.md) 
 
-
 <!--ts-->
 * [目录](#目录)
 * [说明](#说明)
@@ -18,7 +17,7 @@
 * [cpp面经](#cpp面经)
 * [数据结构与算法](#数据结构与算法)
 
-<!-- Added by: zwl, at: Wed Mar  9 08:52:43 CST 2022 -->
+<!-- Added by: zwl, at: Wed Mar  9 20:29:15 CST 2022 -->
 
 <!--te-->
 
@@ -37,6 +36,7 @@
 - [The Missing Semester of Your CS Education [Notes]](https://missing-semester-cn.github.io/), this is the [[Video]](https://www.bilibili.com/video/BV1x7411H7wa?from=search&seid=5808957610484965251&spm_id_from=333.337.0.0) 
 - [计算机速成课 [Notes]](https://github.com/1c7/Crash-Course-Computer-Science-Chinese) , this is the [[Video]](www.bilibili.com/video/av21376839/) 
 - [CS 自学指南 [Notes]](https://csdiy.wiki/) 
+- [CS Notes [147k starred]](https://github.com/CyC2018/CS-Notes) 
 
 **计算机网络资料**:
 - CS144

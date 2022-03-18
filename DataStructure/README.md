@@ -15,8 +15,9 @@
 * [滑动窗口](#滑动窗口)
 * [链表](#链表)
 * [KMP算法](#kmp算法)
+* [队列与栈](#队列与栈)
 
-<!-- Added by: zwl, at: Thu Mar 17 21:31:40 CST 2022 -->
+<!-- Added by: zwl, at: Fri Mar 18 21:21:18 CST 2022 -->
 
 <!--te-->
 # 数据结构与算法
@@ -522,3 +523,56 @@ s字符串长度为9，next最后一个为6，如果`（9-6）% 3 ==
 - [知乎1](https://www.zhihu.com/question/21923021) 
 - [知乎2 [状态机]](https://zhuanlan.zhihu.com/p/83334559) 
 - [算法实现](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0028.%E5%AE%9E%E7%8E%B0strStr.md#28-%E5%AE%9E%E7%8E%B0-strstr) 
+
+
+[【↥ back to top】](#目录)
+# 队列与栈
+
+队列：deque, queue
+栈：stack
+
+队列:
+```
+--------
+
+--------
+^      ^
+队头   队尾
+```
+`deque` 是双端队列， `queue` 是普通队列
+
+两者的区别主要在于：
+1. 内部函数不一样
+2. 添加元素的机制不一样
+
+`queue` 实现了下面的函数，并且只能从一端`push`元素，从一端`pop`元素
+- pop 将队头元素弹出来(注意并不会返回弹出来的元素，是void类型)
+- push 将元素添加进队尾(注意是从队尾进入)
+- front 返回队头元素
+- back
+- empty 判断队列是否为空
+
+`deque` 实现的是下面函数:
+- pop_front
+- pop_back
+- push_back
+- push_front
+- empty
+- front 查看队头元素
+- back
+- size
+
+`stack` 实现的函数为:
+
+- top
+- pop
+- push
+
+```
+sp -> ｜  ｜
+      ｜  ｜
+      ｜  ｜
+      ｜  ｜
+```
+
+

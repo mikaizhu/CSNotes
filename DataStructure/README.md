@@ -6,7 +6,7 @@
    * [vim 打开二进制文件](#vim-打开二进制文件)
    * [字符串与数字之间的转换](#字符串与数字之间的转换)
    * [cpp中查找序列的最大值](#cpp中查找序列的最大值)
-   * [数组元素反转](#数组元素反转)
+* [数组](#数组)
 * [队列](#队列)
 * [堆](#堆)
 * [二叉树](#二叉树)
@@ -17,8 +17,9 @@
 * [KMP算法](#kmp算法)
 * [队列与栈](#队列与栈)
 * [单调队列](#单调队列)
+* [优先队列](#优先队列)
 
-<!-- Added by: zwl, at: Sun Mar 20 14:51:10 CST 2022 -->
+<!-- Added by: zwl, at: Tue Mar 22 20:31:08 CST 2022 -->
 
 <!--te-->
 # 数据结构与算法
@@ -63,12 +64,53 @@ vector<int> ve = {1, 2, 3, 4};
 res = *max_element(ve.begin(), ve.end());
 ```
 
-## 数组元素反转
+
+[【↥ back to top】](#目录)
+# 数组
+
+数组是一块连续的内存地址, 二维数组也是连续的, 数组先会申请空间，如果空间不够，会申请一块新的内存, 这就导致很浪费时间
+
+cpp 中的vector底层是使用array实现的
+
+常用的方法：
+- size
+- push_back
+- resize
+- swap `swap(a[1], a[2])` 
+
+
+一维数组初始化方法：
+
+```
+vector<int> v;
+vector<int> v(3, 0); // 初始化大小为3，元素全为0
+vector<int> v={1, 2, 3}; // 匿名
+return vector<int>{1, 2, 3}; // 匿名
+```
+
+二维数组：
+
+```
+vector<vector<int> > v;
+vector<vector<int> > v(n, vector<int>(n, 0)); // 初始化二维数组，nxn大小
+```
+
+
+数组元素反转
 
 ```
 reverse(res.begin(), res.end());
 ```
 
+resize 用法：
+
+```
+可以减小内存空间的使用
+
+a = [1, 2, 3, 4]
+a.resize(2) // 1, 2
+a.resize(5) // 1, 2, 3, 4, 0
+```
 
 
 [【↥ back to top】](#目录)
@@ -580,8 +622,123 @@ sp -> ｜  ｜
 [【↥ back to top】](#目录)
 # 单调队列
 
+- 单调队列就是：队列中的元素都是单调递增或者递减的
+- 单调队列可以不进行排序，优先队列要进行排序
+- 单调队列的内容不是一层不变的，可以实现pop，push, top等函数，只要保证内部为单调的即可
+- 单调队列的实现可以采用双端队列`deque` 
+
+
 单调队列参考：
 - https://labuladong.gitee.io/algo/2/21/53/
 - https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0239.%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC.md
 
+
+[【↥ back to top】](#目录)
+# 优先队列
+
+参考：
+- https://labuladong.gitee.io/algo/2/21/55/
+
+可以解决的题目：
+- https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0347.%E5%89%8DK%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0.md
+
+涉及到的知识，二叉堆，大顶堆，小顶堆；
+
+- 优先队列也属于一种队列数据结构，会按照内部数据的优先级进行排序，如可以从小到大或者从大到小排。
+- 优先队列每次从队尾添加数据，队头弹出数据
+- 优先队列使用的是数组进行实现的。
+- 大顶堆是一种二叉树结构，父节点总是大于等于左右两个子节点，叫大顶堆，否则叫小顶堆。
+
+**优先队列的实现**：
+
+数组实现，只要知道父节点的位置，那么就可以算出整棵树的元素位置
+
+```
+[0, 1, 2, 3, 4, 5, 6]  // 数组的0位置一般不用, 根节点的元素是1
+
+    1    
+  2   3
+4  5 6  7 
+
+如果知道父节点在数组中的位置，那么其左节点为2*i, 右节点为2*i+1
+
+同理，如果知道左右子节点的位置，那么父节点位置为i/2
+```
+
+**优先队列的顺序维护**：
+
+这里以大顶堆进行说明，如果从队尾添加了一个数据，如何对整个堆进行排序呢？
+
+- 上浮swim
+- 下沉sink
+
+1. 如果当前节点比子节点小，那么该元素就要sink，直到大于所有子节点为止，但是有左右两个节点，应该怎么交换呢？选择比较大的那个节点进行交换, 实现需要while循环，并且sink的时候，需要比较左右节点的位置
+2. 如果当前节点比父节点大，那么元素就要swim，直到比父节点小为止
+
+**实现delMax, insert** :
+
+```
+实现delmax
+
+根节点就是最大元素，首先将根节点元素与最后一个元素交换，然后将最后一个元素赋值为null，然后从根节点开始执行sink函数即可。(这样根节点左右两边的元素自然就代替根节点位置了)
+
+
+实现insert
+将最后一个位置赋值为val，然后从该位置执行swin函数即可
+```
+cpp中的优先队列：`priority_queue`, 参考：
+- https://blog.csdn.net/weixin_36888577/article/details/79937886
+
+可以使用的方法有：
+- pop
+- push
+- top
+- size
+- empty
+```
+
+`priority_queue`第一个参数为数据类型，第二个参数为实现的数据结构，第三个参数为比较方式, 默认为vector容器实现，比较方式默认为大顶堆J
+
+```
+priority_queue<int, vector<int>> q;
+
+// pair的比较
+priority_queue<pair<int, int>, vector<pair<int, int>> > q;
+```
+
+自定义数据的比较方式：自己构建仿函数, 放函数
+
+```
+// 小顶堆实现方式
+class my_compare {
+  public:
+    bool operator()(pair<int, int> a, pair<int, int> b) {
+      return a.second > b.second;
+    }
+};
+
+// 大顶堆实现方式
+class my_compare {
+  public:
+    bool operator()(pair<int, int> a, pair<int, int> b) {
+      return a.second > b.second;
+    }
+};
+
+// 使用, 在初始化的时候就定义好
+priority_queue<pair<int, int>, vector<pair<int, int>>, my_compare> q;
+```
+
+注意：优先队列是不能遍历内部元素的, 即无法通过迭代器遍历元素，也不能下标获得元素
+
+```
+for (priority_queue<int>::iterator it = q.begin(); it != q.end(); it++) 
+
+获取的方法为：
+
+while (!q.empty()) {
+  cout << q.top();
+  q.pop();
+}
+```
 

@@ -4,11 +4,10 @@
 * [数据结构与算法](#数据结构与算法)
    * [推荐资料](#推荐资料)
    * [vim 打开二进制文件](#vim-打开二进制文件)
-   * [字符串与数字之间的转换](#字符串与数字之间的转换)
    * [cpp中查找序列的最大值](#cpp中查找序列的最大值)
 * [数组](#数组)
-* [队列](#队列)
-* [堆](#堆)
+* [哈希表](#哈希表)
+* [字符串](#字符串)
 * [二叉树](#二叉树)
 * [递归](#递归)
 * [二分搜索](#二分搜索)
@@ -19,7 +18,7 @@
 * [单调队列](#单调队列)
 * [优先队列](#优先队列)
 
-<!-- Added by: zwl, at: Tue Mar 22 20:31:08 CST 2022 -->
+<!-- Added by: zwl, at: Wed Mar 23 21:12:20 CST 2022 -->
 
 <!--te-->
 # 数据结构与算法
@@ -43,18 +42,6 @@
 :% ! xxd -r
 ```
 
-## 字符串与数字之间的转换
-
-常用知识点：
-
-```
-string s = "123";
-int i = stoi(s); // 字符串转数字
-// stod (s to double)
-// stol (s to long)
-cout << i << endl;
-s = to_string(i);
-```
 
 ## cpp中查找序列的最大值
 
@@ -95,6 +82,16 @@ vector<vector<int> > v;
 vector<vector<int> > v(n, vector<int>(n, 0)); // 初始化二维数组，nxn大小
 ```
 
+遍历方式：
+
+```
+// 主要有两种
+
+for (int i = 0; i < nums.size(); i++)
+
+for (vector<int>::iterator it; it != nums.end(); it++)
+```
+
 
 数组元素反转
 
@@ -112,65 +109,133 @@ a.resize(2) // 1, 2
 a.resize(5) // 1, 2, 3, 4, 0
 ```
 
-
-[【↥ back to top】](#目录)
-# 队列
-
-队列指的是deque，先进先出，并且内存结构不是连续的。
-
-- 单端队列(queue)
-
-> 只允许对一端进行插入操作，可以查看两端数据
-
-- 双端队列(deque)
-
-> 可以对两端进行插入和删除操作
-
-- 单调队列
-
-> 队列中的元素要么单调增，要么单调减，需要自己手动实现
-
-- 优先队列
-
-> 优先队列一般使用堆来实现, 普通队列为先进先出，优先队列给每个元素赋予优先级，优
-> 先级最高的最先删除，返回等操作.
-
-优先队列用法总结：https://blog.csdn.net/xiaoquantouer/article/details/52015928
-
-`priority_queue<Type, Container, Functional>`
-
-Type为数据类型， Container为保存数据的容器(我们知道堆是用vector实现的，所以这
-里默认用vector)，Functional为元素比较方式。
-
+数组排序:
 ```
-priority_queue<int, vector<int>, cmp> pri_queue;
+sort(v.begin(), v.end(), [](int a, int b ) {return a > b})
 
-// 自定义数据类型，用vector装自定义数据类型
-priority_queue<pair<int, int>, vector<pair<int, int> >, cmp> pri_queue;
-```
-
-
-
-[【↥ back to top】](#目录)
-# 堆
-
-堆就是用数组实现的二叉树，所以它没有使用父指针或者子指针。堆根据“堆属性”来排序，“堆属性”决定了树中节点的位置。
-
-参考：jianshu.com/p/6b526aa481b1
-
-堆分为大顶堆和小顶堆，大顶表示父节点比左右节点都大。
-
-```
-// 利用仿函数，排序自己定义的数据结构
-class cmp {
-    public:
-      bool operator()(const pair<int, int>& lhs, const pair<int, int>& rhs) {
-          return lhs.second > rhs.second; // second是元素的频率，因为堆是完全二叉树，右边大于左边，表示最小堆
-      }
+struct compare {
+  bool operator()(int a, int b) {
+    return a > b;
+  }
 };
 
-priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> _que; // 小顶堆实
-现
+sort(v.begin(), v.end(), compare)
+```
+
+vector转set:
+
+```
+unordered_set<int> s(vector.begin(), vector.end());
+unordered_set<int>(vector.begin(), vector.end());
+```
+
+- [参考cpp笔记](https://github.com/mikaizhu/CppNotes#vector)
+
+
+[【↥ back to top】](#目录)
+# 哈希表
+
+常用的哈希表:
+- map
+- unordered_map
+- set
+- unordered_set
+
+map和set底层实现是红黑树，unordered_map 底层是数组， unordered_set 底层是哈希表
+
+map 和unordered_map 的区别是，map是有序的，unordered_map是无序的
+
+set 和unordered_set 的区别是，set是有序的，unordered_set是无序的
+
+map 常用的方法：
+
+```
+// 初始化
+unodered_map<int, int> m;
+unodered_map<int, int> m = {
+  {1, 2},
+  {2, 3}
+};
+
+
+// 插入元素
+m.insert(pair<int, int>{1, 2})
+
+// 获取大小
+m.size()
+
+// 寻找元素
+m.find() // 返回的是迭代器
+while (m.find() != m.end())
+
+// 遍历元素
+for (unordered_map<int, int>::iterator it; it != m.end(); it++)
+
+// 删除元素
+m.erase(3);
+m.erase(m.begin()+1);
+```
+
+set常用的方法：
+
+```
+// 初始化
+unordered_set<int> s = {1, 2, 3};
+unordered_set<int> s;
+
+// 插入元素
+s.insert(2);
+
+// 获取大小
+s.size();
+
+// 寻找元素
+s.find(2);  // 如果没有找到, 则返回s.end()
+
+// 遍历元素
+for (set<int>::iterator it; it != s.end(); it++)
+
+// 删除元素
+s.erase(3);
+```
+
+
+[【↥ back to top】](#目录)
+# 字符串
+
+字符串常用方法：
+
+```
+// 字符串的定义
+string s;
+string s(n, 'a');
+
+// 字符串的反转
+reverse(s.begin(), s.end());
+
+// 字符串的拼接
+string s1;
+string s2;
+s1 + s2;
+
+// 数字转字符串
+string s = "123";
+int i = stoi(s); // 字符串转数字
+// stod (s to double)
+// stol (s to long)
+cout << i << endl;
+
+// 数字转字符串
+s = to_string(i);
+
+// char转字符串
+string s(1, 'a');
+
+// 字符串的遍历
+for (int i = 0; i ...);
+
+// 字符串的交换
+swap(s[1], s[2]);
 ```
 
 
@@ -272,6 +337,36 @@ public:
 链表中值得注意的是：
 - 自己创造一个虚拟节点会方便很多
 - 有时候设置size变量手动调整长度，会方便很多
+
+链表一般是使用new进行管理，这样需要手动释放，万一有函数操作了链表，函数执行完后就释放了，会出现问题
+
+链表创建方式如下：
+
+```
+class MyLink {
+  private:
+  int _size;
+  Node *_fake;
+  
+  public:
+  struct Node {
+    int val;
+    Node *next;
+
+    Node(int val):val(val), next(nullptr) {};
+    Node(int val, Node *next):val(val), next(next) {};
+  };
+  MyLink() {
+    _size = 0;
+    *fake = new Node(3);
+
+    del fake; // 删除链表
+    fake->next;
+    fake->val;
+  }
+};
+```
+
 
 [参考笔记](https://github.com/mikaizhu/CppNotes#%E9%93%BE%E8%A1%A8) 
 

@@ -18,7 +18,7 @@
 * [单调队列](#单调队列)
 * [优先队列](#优先队列)
 
-<!-- Added by: zwl, at: Wed Mar 23 21:12:20 CST 2022 -->
+<!-- Added by: zwl, at: Thu Mar 24 21:35:41 CST 2022 -->
 
 <!--te-->
 # 数据结构与算法
@@ -242,6 +242,17 @@ swap(s[1], s[2]);
 [【↥ back to top】](#目录)
 # 二叉树
 
+二叉树的种类：[参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.md#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%A7%8D%E7%B1%BB) 
+- 满二叉树: 节点的度要么为0(叶子节点)，要么为2
+- 完全二叉树: 节点可以不满，但是一定要先填满左边的位置
+- 二叉搜索树: 左子树的所有元素，都要比根节点小，右子树的所有元素，都要比根节点大
+- 平衡二叉树: 左子树的深度与右子树的深度差，不大于1, 且左右子树本身，也是平衡二叉树
+
+二叉树的实现:
+- 数组
+- 链表
+
+
 二叉树节点的定义：
 
 ```
@@ -255,6 +266,21 @@ struct treeNode {
     treeNode(int val, treeNode *left, treeNode *right) : val(val), left(left), right(right) {}; // 初始化
 };
 ```
+
+二叉树的遍历方式:
+
+- 深度优先遍历法
+- 广度优先遍历法
+
+深度优先遍历法包括：
+- 前序遍历(中左右)
+- 中续遍历(左中右)
+- 后续遍历(左右中)
+
+广度优先遍历包括：
+- 层次遍历
+
+前中后都是根据中间节点位置进行遍历的，前序遍历刚进入树就开始添加，中续遍历在遍历完左边节点后，才开始添加，后续遍历一样
 
 前中后序遍历：[参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86.md) 
 
@@ -293,7 +319,7 @@ public:
 
 递归三部曲：
 
-1. 确定递归函数需要的参数
+1. 确定递归函数需要的参数, 递归的返回内容是什么
 2. 确定递归的终止条件
 3. 确定递归的内容，哪些逻辑需要重复处理
 
@@ -312,11 +338,30 @@ public:
 - 数组已经排序好了
 - 需要查找的元素，在数组中是唯一的
 
-二分查找有两种模板：这里只介绍一种[left, right], 两边都是闭区间, 流程如下：
-- while left <= right
+二分查找有两种模板：
+
+一种是[left, right], 两边都是闭区间, 流程如下：
+- while left <= right right == left 是有意义的
 - if nums[mid] < target right = mid - 1 
 - else if nums [mid] > target left = mid + 1
 - else return mid
+
+一种是[left, right), 两种区别在于，right此时为s.size() 而不是s.size() - 1, 否则就会少一个元素
+
+```
+while (left < right) {
+  if (nums[mid] < target) {
+    right = mid;
+  }
+  else {
+    left = mid + 1;
+  }
+}
+```
+
+注意left和right的赋值
+
+**重点**: 二分查找关键在于区间更新，每次搜索的内容，一定要保证在更新的区间[left, right] or [left, right)内！
 
 [讲解参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.md) 
 
@@ -836,4 +881,3 @@ while (!q.empty()) {
   q.pop();
 }
 ```
-

@@ -169,7 +169,15 @@ m.find() // 返回的是迭代器
 while (m.find() != m.end())
 
 // 遍历元素
-for (unordered_map<int, int>::iterator it; it != m.end(); it++)
+for(map<int, int>::iterator it=p.begin(); it != p.end(); it++) {
+       cout << it->first << " " << it->second << endl; // 访问指针
+}
+
+for (auto it : map) {
+  cout << it.second; // .访问属性
+}
+        
+
 
 // 删除元素
 m.erase(3);

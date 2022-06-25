@@ -53,6 +53,13 @@ res = *max_element(ve.begin(), ve.end());
 
 
 [【↥ back to top】](#目录)
+# 数据类型强制转换
+leetcode 18题
+
+```
+long sum = (long int) nums[i] + nums[j] + nums[left] + nums[right];
+```
+
 # 数组
 
 数组是一块连续的内存地址, 二维数组也是连续的, 数组先会申请空间，如果空间不够，会申请一块新的内存, 这就导致很浪费时间

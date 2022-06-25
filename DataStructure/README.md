@@ -60,6 +60,10 @@ leetcode 18题
 long sum = (long int) nums[i] + nums[j] + nums[left] + nums[right];
 ```
 
+# cpp中的函数区间
+cpp中的函数一般是左闭右开，比如`reverse`函数，假如有数组`a = [0, 1, 2, 3]`
+`a.begin() == 0`, `a.begin() + 1 == 1`因为是开区间，`reverse(a.begin(), a.begin() + 1`,则只对0起作用
+
 # 数组
 
 数组是一块连续的内存地址, 二维数组也是连续的, 数组先会申请空间，如果空间不够，会申请一块新的内存, 这就导致很浪费时间

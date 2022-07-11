@@ -753,6 +753,7 @@ s字符串长度为9，next最后一个为6，如果`（9-6）% 3 ==
 - front 返回队头元素
 - back
 - empty 判断队列是否为空
+- size 查看大小
 
 `deque` 实现的是下面函数:
 - pop_front

@@ -1005,3 +1005,29 @@ public:
 - 计算左子树的长度
 - 递归构造左子树
 - 递归构造右子树
+
+## 二叉搜索树
+
+参考：
+- 二叉搜索树的特征: https://labuladong.github.io/algo/2/20/41/
+- 二叉搜索树的方法: https://labuladong.github.io/algo/2/20/42/
+
+特点：
+1. 根节点的值，要比左子树的所有节点值要大，比右子树的所有节点小.
+2. 所有子树都有1的特点.
+3. 根据上面两个特点，搜索树的中序遍历，是从小到大排序的.
+
+如果要返回某颗子树：leetcode 700题
+```
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        if (root == nullptr || root->val == val) return root;
+        if (root->val > val) return searchBST(root->left, val);
+        if (root->val < val) return searchBST(root->right, val);
+        return nullptr;
+    }
+};
+```
+
+

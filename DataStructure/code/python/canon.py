@@ -18,7 +18,7 @@ while (res < line1[1]): # 一直进行游戏，如果所有炮台都用到了还
         my_can_count = res # 初始化我方炮台数，因为后面可能被消灭
         line2[att_obj] = line2[att_obj] - my_can_count # 最右边炮台血量要减去我方炮台数
         if (line2[att_obj] < 0): # 如果血量小于0 则攻击下一个
-            att_obj -= 1
+            att_obj -= 1vimspector#Continue()
 
         # 敌方开始攻击
         att_pos = -1 # 先攻击我方炮台血最少的那个

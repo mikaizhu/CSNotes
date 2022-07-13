@@ -6,7 +6,7 @@
 - [missing semester笔记](https://github.com/mikaizhu/CSNotes/blob/main/missing_semester_notes.md) 
 
 <!--ts-->
--e * [目录](#目录)
+* [目录](#目录)
 * [说明](#说明)
 * [时间计划安排](#时间计划安排)
 * [推荐教程](#推荐教程)
@@ -16,8 +16,8 @@
 * [学习路线](#学习路线)
 * [cpp面经](#cpp面经)
 * [数据结构与算法](#数据结构与算法)
--e 
-<!-- Added by: zwl, at: Wed Jul 13 10:14:03 CST 2022 -->
+
+<!-- Added by: zwl, at: Wed Jul 13 19:37:22 CST 2022 -->
 
 <!--te-->
 

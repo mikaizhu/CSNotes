@@ -1,15 +1,14 @@
 # 目录
 <!--ts-->
-* [目录](#目录)
+-e * [目录](#目录)
 * [数据结构与算法](#数据结构与算法)
    * [推荐资料](#推荐资料)
    * [vim 打开二进制文件](#vim-打开二进制文件)
+   * [cin 用法](#cin-用法)
    * [cpp中查找序列的最大值](#cpp中查找序列的最大值)
 * [数组](#数组)
 * [哈希表](#哈希表)
 * [字符串](#字符串)
-* [二叉树](#二叉树)
-* [递归](#递归)
 * [二分搜索](#二分搜索)
 * [滑动窗口](#滑动窗口)
 * [链表](#链表)
@@ -17,8 +16,14 @@
 * [队列与栈](#队列与栈)
 * [单调队列](#单调队列)
 * [优先队列](#优先队列)
-
-<!-- Added by: zwl, at: Thu Mar 24 21:37:36 CST 2022 -->
+* [二叉树](#二叉树)
+* [递归](#递归)
+* [树模型](#树模型)
+   * [平衡二叉树](#平衡二叉树)
+   * [遍历二叉树](#遍历二叉树)
+   * [构造二叉树](#构造二叉树)
+-e 
+<!-- Added by: zwl, at: Wed Jul 13 10:13:32 CST 2022 -->
 
 <!--te-->
 # 数据结构与算法
@@ -42,6 +47,9 @@
 :% ! xxd -r
 ```
 
+## cin 用法
+
+
 
 ## cpp中查找序列的最大值
 
@@ -49,6 +57,8 @@
 int res;
 vector<int> ve = {1, 2, 3, 4};
 res = *max_element(ve.begin(), ve.end());
+
+INT_MIN/INT_MAX
 ```
 
 
@@ -62,8 +72,15 @@ cpp 中的vector底层是使用array实现的
 常用的方法：
 - size
 - push_back
+- pop_back
 - resize
 - swap `swap(a[1], a[2])` 
+- max_element()/min_element()
+
+```
+int maxn = *max_element(nums.begin(), nums.end());
+int pos = max_element(nums.begin(), nums.end()) - nums.begin(); // 获取最大值的位置
+```
 
 
 一维数组初始化方法：
@@ -199,7 +216,6 @@ for (set<int>::iterator it; it != s.end(); it++)
 s.erase(3);
 ```
 
-
 [【↥ back to top】](#目录)
 # 字符串
 
@@ -239,96 +255,6 @@ swap(s[1], s[2]);
 ```
 
 
-[【↥ back to top】](#目录)
-# 二叉树
-
-二叉树的种类：[参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.md#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%A7%8D%E7%B1%BB) 
-- 满二叉树: 节点的度要么为0(叶子节点)，要么为2
-- 完全二叉树: 节点可以不满，但是一定要先填满左边的位置
-- 二叉搜索树: 左子树的所有元素，都要比根节点小，右子树的所有元素，都要比根节点大
-- 平衡二叉树: 左子树的深度与右子树的深度差，不大于1, 且左右子树本身，也是平衡二叉树
-
-二叉树的实现:
-- 数组
-- 链表
-
-
-二叉树节点的定义：
-
-```
-struct treeNode {
-  public:
-    int val;
-    treeNode *left;
-    treeNode *right;
-    treeNode() : val(0), left(NULL), right(NULL) {}; // 初始化
-    treeNode(int val) : val(val), left(NULL), right(NULL) {}; // 初始化
-    treeNode(int val, treeNode *left, treeNode *right) : val(val), left(left), right(right) {}; // 初始化
-};
-```
-
-二叉树的遍历方式:
-
-- 深度优先遍历法
-- 广度优先遍历法
-
-深度优先遍历法包括：
-- 前序遍历(中左右)
-- 中续遍历(左中右)
-- 后续遍历(左右中)
-
-广度优先遍历包括：
-- 层次遍历
-
-前中后都是根据中间节点位置进行遍历的，前序遍历刚进入树就开始添加，中续遍历在遍历完左边节点后，才开始添加，后续遍历一样
-
-前中后序遍历：[参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86.md) 
-
-前序
-
-```
-// 不用this也可以
-class Solution {
-public:
-    void traversal(TreeNode *root, vector<int>& res) {
-        if (root == NULL) return;
-        res.push_back(root->val);
-        this->traversal(root->left, res);
-        this->traversal(root->right, res);
-    }
-
-    vector<int> preorderTraversal(TreeNode* root) {
-        vector<int> res;
-        this->traversal(root, res);
-        return res;
-    }
-};
-```
-
-除了使用递归的方式，还有使用栈进行迭代
-
-层序遍历：一层一层从左往右边输出，使用队列数据结构来实现，因为先进先出
-
-如何记录每一层呢？队列queue是动态变化的，我们可以记录每一层的个数，就可以区分
-开来。第一层弹出队列后，队列的大小就是第二层的个数。
-
-
-
-[【↥ back to top】](#目录)
-# 递归
-
-递归三部曲：
-
-1. 确定递归函数需要的参数, 递归的返回内容是什么
-2. 确定递归的终止条件
-3. 确定递归的内容，哪些逻辑需要重复处理
-
-更准确一点:
-1. 找整个递归的终止条件：递归应该在什么时候结束？
-2. 找返回值：应该给上一级返回什么信息？
-3. 本级递归应该做什么：在这一级递归中，应该完成什么任务？
-
-参考: https://lyl0724.github.io/2020/01/25/1/
 
 
 [【↥ back to top】](#目录)
@@ -734,6 +660,7 @@ s字符串长度为9，next最后一个为6，如果`（9-6）% 3 ==
 - front 返回队头元素
 - back
 - empty 判断队列是否为空
+- size
 
 `deque` 实现的是下面函数:
 - pop_front
@@ -835,14 +762,13 @@ cpp中的优先队列：`priority_queue`, 参考：
 - top
 - size
 - empty
-```
 
-`priority_queue`第一个参数为数据类型，第二个参数为实现的数据结构，第三个参数为比较方式, 默认为vector容器实现，比较方式默认为大顶堆J
+`priority_queue`第一个参数为要放入优先队列的数据类型，第二个参数为实现优先队列的数据结构，第三个参数为比较方式, 默认为vector容器实现，比较方式默认为大顶堆
 
 ```
 priority_queue<int, vector<int>> q;
 
-// pair的比较
+// pair的比较, unordered_map 底层就是pair
 priority_queue<pair<int, int>, vector<pair<int, int>> > q;
 ```
 
@@ -881,3 +807,130 @@ while (!q.empty()) {
   q.pop();
 }
 ```
+
+[【↥ back to top】](#目录)
+# 二叉树
+
+二叉树的种类：[参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.md#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%A7%8D%E7%B1%BB) 
+- 满二叉树: 节点的度要么为0(叶子节点)，要么为2
+- 完全二叉树: 节点可以不满，但是一定要先填满左边的位置
+- 二叉搜索树: 左子树的所有元素，都要比根节点小，右子树的所有元素，都要比根节点大
+- 平衡二叉树: 左子树的深度与右子树的深度差，不大于1, 且左右子树本身，也是平衡二叉树
+
+二叉树的实现:
+- 数组
+- 链表
+
+
+二叉树节点的定义：
+
+```
+struct treeNode {
+  public:
+    int val;
+    treeNode *left;
+    treeNode *right;
+    treeNode() : val(0), left(NULL), right(NULL) {}; // 初始化
+    treeNode(int val) : val(val), left(NULL), right(NULL) {}; // 初始化
+    treeNode(int val, treeNode *left, treeNode *right) : val(val), left(left), right(right) {}; // 初始化
+};
+```
+
+二叉树的遍历方式:
+
+- 深度优先遍历法
+- 广度优先遍历法
+
+深度优先遍历法包括：
+- 前序遍历(中左右)
+- 中续遍历(左中右)
+- 后续遍历(左右中)
+
+广度优先遍历包括：
+- 层次遍历
+
+前中后都是根据中间节点位置进行遍历的，前序遍历刚进入树就开始添加，中续遍历在遍历完左边节点后，才开始添加，后续遍历一样
+
+前中后序遍历：[参考](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86.md) 
+
+前序
+
+```
+// 不用this也可以
+class Solution {
+public:
+    void traversal(TreeNode *root, vector<int>& res) {
+        if (root == NULL) return;
+        res.push_back(root->val);
+        this->traversal(root->left, res);
+        this->traversal(root->right, res);
+    }
+
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+        this->traversal(root, res);
+        return res;
+    }
+};
+```
+
+除了使用递归的方式，还有使用栈进行迭代
+
+层序遍历：一层一层从左往右边输出，使用队列数据结构来实现，因为先进先出
+
+如何记录每一层呢？队列queue是动态变化的，我们可以记录每一层的个数，就可以区分
+开来。第一层弹出队列后，队列的大小就是第二层的个数。
+
+
+
+[【↥ back to top】](#目录)
+# 递归
+
+递归三部曲：
+
+1. 确定递归函数需要的参数, 递归的返回内容是什么
+2. 确定递归的终止条件
+3. 确定递归的内容，哪些逻辑需要重复处理
+
+更准确一点:
+1. 找整个递归的终止条件：递归应该在什么时候结束？
+2. 找返回值：应该给上一级返回什么信息？
+3. 本级递归应该做什么：在这一级递归中，应该完成什么任务？
+
+参考: https://lyl0724.github.io/2020/01/25/1/
+
+
+[【↥ back to top】](#目录)
+# 树模型
+
+## 平衡二叉树
+
+平衡二叉树主要有个知识点：节点的高度，和节点的深度，如：
+
+```
+   1
+ 2   3
+4 5 6 7
+```
+
+那么根节点的深度就是1，高度为3;第二层的深度为2， 高度为2;
+
+平衡二叉树即：该树的任意节点的左右子树高度差不大于1
+
+这个递归比较好处理：
+1. 确定递归的返回值和传入的参数：返回当前节点的高度，参数即传入当前节点
+2. 确定递归的终止条件：如果当前节点为为叶子节点，则返回0
+3. 确定递归的逻辑: 计算该节点的左子树的高度，计算该节点右子树的高度，如果高度差大于1，则返回高度为-1，表示无效，如果高度差小于等于1，则传入左右子树的最大值，再加上1，最后返回当前节点的高度
+
+## 遍历二叉树
+
+要想遍历二叉树的所有路径，并打印出来，可以使用方法：
+1. 前序遍历
+2. 递归
+
+前序遍历除了使用`stack<TreeNode*>`, 还应该使用辅助栈`stack<string> sts`, 来模拟回溯
+
+## 构造二叉树
+
+参考：https://labuladong.github.io/algo/2/20/37/
+

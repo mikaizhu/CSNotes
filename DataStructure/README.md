@@ -6,6 +6,8 @@
    * [vim 打开二进制文件](#vim-打开二进制文件)
    * [cin 用法](#cin-用法)
    * [cpp中查找序列的最大值](#cpp中查找序列的最大值)
+* [数据类型强制转换](#数据类型强制转换)
+* [cpp中的函数区间](#cpp中的函数区间)
 * [数组](#数组)
 * [哈希表](#哈希表)
 * [字符串](#字符串)
@@ -23,7 +25,7 @@
    * [遍历二叉树](#遍历二叉树)
    * [构造二叉树](#构造二叉树)
 -e 
-<!-- Added by: zwl, at: Wed Jul 13 10:13:32 CST 2022 -->
+<!-- Added by: zwl, at: Wed Jul 13 10:14:04 CST 2022 -->
 
 <!--te-->
 # 数据结构与算法
@@ -60,6 +62,21 @@ res = *max_element(ve.begin(), ve.end());
 
 INT_MIN/INT_MAX
 ```
+
+
+[【↥ back to top】](#目录)
+# 数据类型强制转换
+leetcode 18题
+
+```
+long sum = (long int) nums[i] + nums[j] + nums[left] + nums[right];
+```
+
+
+[【↥ back to top】](#目录)
+# cpp中的函数区间
+cpp中的函数一般是左闭右开，比如`reverse`函数，假如有数组`a = [0, 1, 2, 3]`
+`a.begin() == 0`, `a.begin() + 1 == 1`因为是开区间，`reverse(a.begin(), a.begin() + 1`,则只对0起作用
 
 
 [【↥ back to top】](#目录)
@@ -186,7 +203,15 @@ m.find() // 返回的是迭代器
 while (m.find() != m.end())
 
 // 遍历元素
-for (unordered_map<int, int>::iterator it; it != m.end(); it++)
+for(map<int, int>::iterator it=p.begin(); it != p.end(); it++) {
+       cout << it->first << " " << it->second << endl; // 访问指针
+}
+
+for (auto it : map) {
+  cout << it.second; // .访问属性
+}
+        
+
 
 // 删除元素
 m.erase(3);
@@ -660,7 +685,11 @@ s字符串长度为9，next最后一个为6，如果`（9-6）% 3 ==
 - front 返回队头元素
 - back
 - empty 判断队列是否为空
+<<<<<<< HEAD
 - size
+=======
+- size 查看大小
+>>>>>>> 70a80c16324731bfa46216f4fcc6725561ba10af
 
 `deque` 实现的是下面函数:
 - pop_front

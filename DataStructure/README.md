@@ -24,8 +24,10 @@
    * [平衡二叉树](#平衡二叉树)
    * [遍历二叉树](#遍历二叉树)
    * [构造二叉树](#构造二叉树)
+   * [二叉搜索树](#二叉搜索树)
+   * [二叉树的静态成员函数问题](#二叉树的静态成员函数问题)
 
-<!-- Added by: zwl, at: Wed Jul 13 19:37:23 CST 2022 -->
+<!-- Added by: zwl, at: Thu Jul 14 18:50:08 CST 2022 -->
 
 <!--te-->
 # 数据结构与算法
@@ -1030,4 +1032,31 @@ public:
 };
 ```
 
+如何在递归中记录前一个指针：pre和cur？ # leetcode 530
 
+本题的模板还是中序遍历：
+
+```
+void traversal(TreeNode* root, vector<int>& res) {
+    if (root == nullptr) return;
+    traversal(root->left, res);
+    res.push_back(root->val);
+    traversal(root->right, res);
+}
+```
+要想记录pre节点和cur节点，只用将`res.push_back(root->val);`替换成pre = root即可，因为我们要用cur->val - pre-val
+我们只用初始化pre为null即可
+
+## 二叉树的静态成员函数问题
+
+leetcode 501 搜索二叉树中的众数
+
+该题目的思路为：
+- 中序遍历搜索二叉树，将遍历的元素存起来, 采用map的方式存
+- 将map转换成数组，因为map是乱序的，并不能根据频率排序
+- 使用sort方法进行排序，sort中第三个cmp谓词参数，只能传入静态成员函数的指针
+- 在外部定义静态成员函数cmp，从大到小排序
+
+说明：
+- cpp的类中成员函数，都是非静态成员函数，cpp中的成员函数，每个都还包括了this指针，相当于python中的self
+- 所以要用sort方法，外部应该定义 `bool static cmp()` 

@@ -248,6 +248,10 @@ for (set<int>::iterator it; it != s.end(); it++)
 
 // 删除元素
 s.erase(3);
+
+// for (auto i : s1) {
+  cout << i << endl;
+}
 ```
 
 [【↥ back to top】](#目录)

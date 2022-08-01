@@ -805,7 +805,7 @@ cpp中的优先队列：`priority_queue`, 参考：
 - size
 - empty
 
-`priority_queue`第一个参数为要放入优先队列的数据类型，第二个参数为实现优先队列的数据结构，第三个参数为比较方式, 默认为vector容器实现，比较方式默认为大顶堆
+`priority_queue`第一个参数为要放入优先队列的数据类型，第二个参数为实现优先队列的数据结构，必须是vector类型的框架（可以vector里面装的是pair），第三个参数为比较方式, 默认为vector容器实现，比较方式默认为大顶堆
 
 ```
 priority_queue<int, vector<int>> q;
@@ -829,7 +829,7 @@ class my_compare {
 class my_compare {
   public:
     bool operator()(pair<int, int> a, pair<int, int> b) {
-      return a.second > b.second;
+      return a.second < b.second;
     }
 };
 

@@ -204,5 +204,4 @@ setup 0x90200        |     | <--  setup.s就是将电脑信息获取并存储，
 [【↥ back to top】](#目录)
 # 第七回
 
-
 [reference](https://mp.weixin.qq.com/s/S5zarr9BmLhUHAmdmeNypA) 

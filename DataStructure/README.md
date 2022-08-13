@@ -53,7 +53,179 @@
 
 ## cin 用法
 
+reference: https://ac.nowcoder.com/acm/contest/5657/I
 
+说明：
+```
+cin 是以空格和换行区分读取的。并且可以直接将字符串转换成int类型;
+```
+
+example:
+
+输入数据包括多组。
+每组数据一行,每行的第一个整数为整数的个数n(1 <= n <= 100), n为0的时候结束输入。
+接下来n个正整数,即需要求和的每个正整数。
+
+每组数据输出求和的结果
+
+```
+4 1 2 3 4
+5 1 2 3 4 5
+0
+
+10
+15
+```
+
+ans:
+```
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main() {
+    int n;
+    while (cin >> n) {
+        if (!n) break;
+        int sum = 0;
+        int num;
+        for (int i = 0; i < n; i++) {
+            cin >> num;
+            sum += num;
+        }
+        cout << sum << endl;
+    }
+}
+```
+
+example:
+
+输入数据有多组, 每行表示一组输入数据。
+
+每行不定有n个整数，空格隔开。(1 <= n <= 100)。
+
+每组数据输出求和的结果
+
+```
+1 2 3
+4 5
+0 0 0 0 0
+
+
+6
+9
+0
+```
+
+ans:
+```
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main() {
+    int n;
+    string s;
+    int sum = 0;
+    while (cin >> n) {
+        sum += n;
+        if (cin.get() == '\n') {
+            cout << sum << endl;
+            sum = 0;
+        }
+    }
+}
+```
+
+example:
+
+输入有两行，第一行n
+
+第二行是n个字符串，字符串之间用空格隔开
+
+输出一行排序后的字符串，空格隔开，无结尾空格
+
+```
+5
+c d a bb e
+
+a bb c d e
+```
+
+ans:
+```
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    string s;
+    vector<string> res;
+    while (n--) {
+        cin >> s;
+        res.push_back(s);
+    }
+    sort(res.begin(), res.end());
+    for (int i = 0; i < res.size(); i++) {
+        if (i == res.size()-1) cout << res[i];
+        else cout << res[i] << ' ';
+    }
+
+}
+```
+
+example:
+
+多个测试用例，每个测试用例一行。
+每行通过,隔开，有n个字符，n＜100
+
+对于每组用例输出一行排序后的字符串，用','隔开，无结尾空格
+
+```
+a,c,bb
+f,dddd
+nowcoder
+```
+
+ans: 对于这种不是用空格分开的，就不能用cin去分隔了，最好使用 getline + stringstream
+
+需要额外导入stringstream的包：sstream
+
+```
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <sstream>
+
+using namespace std;
+
+int main() {
+    string s;
+    vector<string> res;
+    while (getline(cin, s)) {
+        stringstream str;
+        str << s;
+        string temp;
+        while (getline(str, temp, ',')) {
+            res.push_back(temp);
+        }
+        sort(res.begin(), res.end());
+        for (int i = 0; i < res.size(); i++) {
+            if (i == res.size()-1) cout << res[i];
+            else cout << res[i] << ',';
+        }
+        cout << endl;
+        res.clear();
+    }
+}
+```
 
 ## cpp中查找序列的最大值
 
